@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация Braint AI Gateway — On-Premise Комплаенс</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyberBg: '#0B0F19',
+                        cyberBorder: '#1E293B',
+                        brandGreen: '#10B981',
+                        brandBlue: '#3B82F6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cyberBg text-slate-200 font-sans antialiased selection:bg-brandGreen/30 selection:text-white">
+
+    <header class="border-b border-cyberBorder sticky top-0 bg-cyberBg/80 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="../index.html" class="text-xl font-bold tracking-wider text-white flex items-center hover:opacity-90 transition">
+                    <span class="text-brandGreen font-extrabold mr-1">&lt;</span>BRAINT<span class="text-brandBlue font-extrabold ml-1">/&gt;</span>
+                </a>
+                <span class="text-xs text-slate-500 border-l border-cyberBorder pl-3 hidden sm:inline">Technical Docs</span>
+            </div>
+            <div>
+                <a href="../index.html" class="text-xs font-medium text-slate-400 hover:text-white transition flex items-center">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Вернуться на сайт
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <aside class="lg:col-span-3 space-y-8 sticky top-24 h-fit">
+            <div class="space-y-2">
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">1. Быстрый старт</p>
+                <ul class="space-y-1.5 text-sm font-medium text-slate-400 pl-2 border-l border-cyberBorder">
+                    <li><a href="#quick-start" class="hover:text-brandGreen transition block py-1">Развертывание шлюза</a></li>
+                    <li><a href="#env-vars" class="hover:text-brandGreen transition block py-1">Переменные среды (Air-Gap)</a></li>
+                </ul>
+            </div>
+            <div class="space-y-2">
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">2. Спецификация API</p>
+                <ul class="space-y-1.5 text-sm font-medium text-slate-400 pl-2 border-l border-cyberBorder">
+                    <li><a href="#api-endpoint" class="hover:text-brandBlue transition block py-1 flex items-center"><span class="text-[10px] bg-brandBlue/10 text-brandBlue px-1 rounded mr-1.5 font-mono">POST</span> /api/chat</a></li>
+                </ul>
+            </div>
+            <div class="space-y-2">
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">3. Безопасность и Лингвистика</p>
+                <ul class="space-y-1.5 text-sm font-medium text-slate-400 pl-2 border-l border-cyberBorder">
+                    <li><a href="#linguistics" class="hover:text-purple-400 transition block py-1">Морфология Казахского и Русского языков</a></li>
+                    <li><a href="#token-vault" class="hover:text-purple-400 transition block py-1">Регламент Vault & Redis</a></li>
+                    <li><a href="#audit-trail" class="hover:text-purple-400 transition block py-1">Лог инспекций (Audit Trail)</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="lg:col-span-9 space-y-16">
+            
+            <div class="border-b border-cyberBorder pb-8">
+                <h1 class="text-3xl font-extrabold text-white sm:text-4xl">Спецификация архитектуры и API</h1>
+                <p class="text-slate-400 mt-3 text-lg leading-relaxed">
+                    Braint AI Gateway функционирует как прозрачный комплаенс-прокси между вашей внутренней корпоративной инфраструктурой и глобальными моделями ИИ. Архитектура разработана по стандартам Zero-Trust.
+                </p>
+            </div>
+
+            <section id="quick-start" class="space-y-4 scroll-mt-24">
+                <h2 class="text-2xl font-bold text-white flex items-center">
+                    <span class="text-brandGreen font-mono mr-2">1.1.</span> Развертывание On-Premise шлюза
+                </h2>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Шлюз поставляется в виде изолированных Docker-контейнеров и разворачивается внутри демилитаризованной зоны (DMZ) или закрытого контура организации. Система оптимизирована для инференса на CPU.
+                </p>
+                
+                <div class="bg-slate-950 rounded-xl border border-cyberBorder overflow-hidden font-mono text-xs text-slate-300">
+                    <div class="bg-slate-900 px-4 py-2 text-slate-500 border-b border-cyberBorder flex justify-between items-center">
+                        <span>Terminal (Bash)</span>
+                        <span class="text-[10px] uppercase bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Docker Setup</span>
+                    </div>
+                    <pre class="p-4 overflow-x-auto space-y-1"><span class="text-slate-500"># Шаг 1: Клонируйте стабильный дистрибутив в закрытый контур</span>
+<span class="text-brandBlue">git clone</span> https://github.com/braint-ai/gateway-stable.git && <span class="text-brandBlue">cd</span> gateway-stable
+
+<span class="text-slate-500"># Шаг 2: Создайте файл конфигурации окружения</span>
+<span class="text-brandBlue">cat</span> <span class="text-brandGreen"><span class="text-brandGreen">&lt;&lt;EOF</span> &gt; .env</span>
+GATEWAY_PORT=8000
+EXTERNAL_LLM_PROVIDER=openrouter
+EXTERNAL_LLM_API_KEY=your_secured_enterprise_key_here
+REDIS_TTL_DAYS=30
+TRANSFORMERS_OFFLINE=1
+<span class="text-brandGreen">EOF</span>
+
+<span class="text-slate-500"># Шаг 3: Запустите локальный оркестрованный стек одной командой</span>
+<span class="text-brandBlue">docker-compose</span> up -d --build</pre>
+                </div>
+            </section>
+
+            <section id="env-vars" class="space-y-4 scroll-mt-24">
+                <h3 class="text-lg font-bold text-white flex items-center">
+                    <span class="text-brandGreen font-mono mr-2">1.2.</span> Параметры изоляции (Air-Gap Комплаенс)
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Для полного исключения несанкционированных сетевых запросов шлюз поддерживает режим жесткой изоляции. Конфигурация переменных среды в `.env` файле:
+                </p>
+                <div class="overflow-x-auto rounded-xl border border-cyberBorder">
+                    <table class="w-full text-left border-collapse text-xs font-mono">
+                        <thead class="bg-slate-900 text-slate-400 border-b border-cyberBorder">
+                            <tr>
+                                <th class="p-3">Переменная</th>
+                                <th class="p-3">Значение</th>
+                                <th class="p-3">Описание политики ИБ</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-cyberBorder text-slate-300">
+                            <tr>
+                                <td class="p-3 text-brandGreen font-bold">TRANSFORMERS_OFFLINE</td>
+                                <td class="p-3">`1`</td>
+                                <td class="p-3 text-slate-400">Намертво блокирует обращение локальной SLM-модели (NER) к внешним репозиториям HuggingFace. Веса загружаются из локального тома Docker.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 text-brandGreen font-bold">REDIS_TTL_DAYS</td>
+                                <td class="p-3">`30`</td>
+                                <td class="p-3 text-slate-400">Время жизни связки «Токен &lt;-&gt; Персональные данные» в оперативной памяти. По истечении срока данные безвозвратно удаляются.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="api-endpoint" class="space-y-4 scroll-mt-24 border-t border-cyberBorder pt-12">
+                <h2 class="text-2xl font-bold text-white flex items-center">
+                    <span class="text-brandBlue font-mono mr-2">2.1.</span> Метод безопасного обмена сообщениями
+                </h2>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Замените базовый эндпоинт провайдера во всех ваших CRM, ERP и чат-системах на адрес локального шлюза Braint. Интерфейс полностью идентичен стандартным спецификациям обмена сообщениями.
+                </p>
+                
+                <div class="bg-slate-900 border border-cyberBorder rounded-xl p-4 flex items-center space-x-3">
+                    <span class="bg-brandBlue/10 text-brandBlue font-mono text-xs font-bold px-2.5 py-1 rounded border border-brandBlue/20">POST</span>
+                    <span class="font-mono text-sm text-white">http://localhost:8000/api/chat</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 font-mono">Пример входящего запроса (JSON):</p>
+                        <div class="bg-slate-950 border border-cyberBorder rounded-xl p-4 font-mono text-xs text-amber-400 overflow-x-auto h-48">
+<pre>{
+  <span class="text-slate-400">"message"</span>: <span class="text-slate-200">"Срочно проверь благонадежность контрагента. ТОО Квант, БИН 010203040506, директор Смагулов А.Б., ИИН 790807300123."</span>,
+  <span class="text-slate-400">"session_id"</span>: <span class="text-slate-200">"corp_session_9941"</span>
+}</pre>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-brandGreen font-mono">Что уходит во внешнюю LLM-сеть:</p>
+                        <div class="bg-slate-950 border border-brandGreen/20 rounded-xl p-4 font-mono text-xs text-brandGreen overflow-x-auto h-48">
+<pre>{
+  <span class="text-brandGreen/60">"message"</span>: <span class="text-white">"Срочно проверь благонадежность контрагента. <span class="bg-brandBlue/20 px-1 rounded text-brandBlue border border-brandBlue/30">[COMPANY_1]</span>, БИН <span class="bg-brandBlue/20 px-1 rounded text-brandBlue border border-brandBlue/30">[ID_BIN_1]</span>, директор <span class="bg-purple-500/20 px-1 rounded text-purple-400 border border-purple-500/30">[PERSON_1]</span>, ИИН <span class="bg-brandBlue/20 px-1 rounded text-brandBlue border border-brandBlue/30">[ID_IIN_1]</span>."</span>,
+  <span class="text-brandGreen/60">"session_id"</span>: <span class="text-white">"corp_session_9941"</span>
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="linguistics" class="space-y-4 scroll-mt-24 border-t border-cyberBorder pt-12">
+                <h2 class="text-2xl font-bold text-white flex items-center">
+                    <span class="text-purple-400 font-mono mr-2">3.1.</span> Двуязычный морфологический синтез
+                </h2>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Главная проблема простых систем анонимизации при работе с флективными (русский) и агглютинативными (казахский) языками — это грамматическая деградация при де-токенизации. Шлюз Braint интегрирует гибридный пайплайн **Morphological Synthesis Layer** на базе конечных автоматов и локальных SLM.
+                </p>
+                <blockquote class="bg-slate-950 border-l-2 border-purple-500 p-4 rounded-r-xl text-xs text-slate-400 leading-relaxed font-mono">
+                    <span class="text-purple-400 font-bold">Пример агглютинации в казахском языке:</span><br>
+                    Если исходное название компании «Қазақмыс» маскируется токеном, а внешняя модель возвращает синтаксическую конструкцию с суффиксом падежа: `[COMPANY_1]-ке бағытталды`. <br class="mb-2">
+                    Шлюз автоматически отсекает несовместимый суффикс `-ке`, анализирует фономорфологию восстановленного корня по закону сингармонизма и синтезирует грамматически безупречный ответ: <span class="text-white font-bold">«Қазақмысқа бағытталды»</span> вместо сломанного «Қазақмыс-ке...».
+                </blockquote>
+            </section>
+
+            <section id="token-vault" class="space-y-4 scroll-mt-24 border-t border-cyberBorder pt-12">
+                <h2 class="text-2xl font-bold text-white flex items-center">
+                    <span class="text-purple-400 font-mono mr-2">3.2.</span> Архитектура хранения таблиц соответствия (Redis Vault)
+                </h2>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Де-токенизация требует сопоставления сгенерированных токенов с исходным контекстом. В целях безопасности шлюз полностью отказывается от сохранения этих связок на энергонезависимые жесткие диски (SSD/HDD).
+                </p>
+                <div class="bg-slate-900/40 border border-cyberBorder rounded-2xl p-6 space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <div class="text-brandGreen mt-1">✔</div>
+                        <p class="text-sm text-slate-300">**In-Memory изоляция**: Все пары `Токен &lt;-&gt; Исходный текст` хранятся исключительно во внутренней резидентной базе данных Redis, развернутой внутри RAM-памяти сервера.</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-brandGreen mt-1">✔</div>
+                        <p class="text-sm text-slate-300">**Автономное вытеснение (TTL)**: Каждая сессия жестко привязана к глобальному таймеру автоматического уничтожения. Данные стираются без возможности восстановления.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="audit-trail" class="space-y-4 scroll-mt-24 border-t border-cyberBorder pt-12 pb-12">
+                <h2 class="text-2xl font-bold text-white flex items-center">
+                    <span class="text-purple-400 font-mono mr-2">3.3.</span> Режим аудита (Audit Trail) для офицеров ИБ
+                </h2>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Система фиксирует факт прохождения транзакций, фиксирует тип обнаруженных сущностей (ИИН, ФИО, Локальный БИН), но **не сохраняет конфиденциальный текст в лог-файлы общего доступа**. Это позволяет интегрировать шлюз с корпоративными SIEM-системами банка без нарушения комплаенса.
+                </p>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
