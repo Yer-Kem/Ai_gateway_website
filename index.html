@@ -3,266 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Braint AI Security Gateway — Безопасный генеративный ИИ для бизнеса</title>
+    <title>Braint AI Gateway — Безопасный корпоративный ИИ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        saasBg: '#FAFAFA',
-                        saasCard: '#FFFFFF',
-                        saasBorder: '#E2E8F0',
-                        saasText: '#0F172A',
-                        saasMuted: '#64748B',
-                        saasBrand: '#0284C7', /* Sky Blue */
-                        saasGreen: '#10B981'  /* Emerald */
-                    },
-                    boxShadow: {
-                        saas: '0 4px 30px rgba(0, 0, 0, 0.03)',
-                        saasHover: '0 10px 40px rgba(2, 132, 199, 0.06)'
+                    fontFamily: {
+                        sans: ['Geist Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        mono: ['Geist Mono', 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'monospace']
                     }
                 }
             }
         }
     </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        body { font-family: 'Geist Sans', -apple-system, sans-serif; }
+        .vercel-shadow { box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04); }
+        .vercel-shadow-hover:hover { box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 12px 24px rgba(0,0,0,.08); }
+    </style>
 </head>
-<body class="bg-saasBg text-saasText font-sans antialiased selection:bg-saasBrand/10 selection:text-saasBrand">
+<body class="bg-[#fafafa] text-[#171717] antialiased selection:bg-[#0070f3]/10 selection:text-[#0070f3]">
 
-    <header class="border-b border-saasBorder sticky top-0 bg-white/80 backdrop-blur-md z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-saasBrand to-saasGreen flex items-center justify-center text-white font-bold text-lg shadow-sm">
-                    B
+    <header class="border-b border-[#ececec] sticky top-0 bg-white/80 backdrop-blur-md z-50">
+        <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5 text-black" viewBox="0 0 76 65" fill="currentColor">
+                        <path d="M37.5274 0L75.0548 65H0L37.5274 0Z"></path>
+                    </svg>
+                    <span class="text-lg font-bold tracking-tight text-black">braint<span class="text-[#0070f3] font-normal">.ai</span></span>
                 </div>
-                <span class="text-xl font-bold tracking-tight text-saasText">
-                    braint<span class="text-saasBrand font-medium">.ai</span>
-                </span>
-                <span class="bg-slate-100 text-slate-600 text-[10px] font-medium tracking-wide px-2 py-0.5 rounded-md border border-saasBorder [cite: 6]">On-Premise</span>
+                <span class="bg-[#fafafa] text-[#666666] text-[11px] font-mono px-2 py-0.5 rounded-md border border-[#ececec]">On-Premise</span>
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-saasMuted">
-                <a href="#how-it-works" class="hover:text-saasText transition">Технология</a>
-                <a href="#benefits" class="hover:text-saasText transition">Преимущества</a>
-                <a href="#calculator" class="hover:text-saasText transition">Аудит комплаенса</a>
-                <a href="./docs/index.html" class="hover:text-saasText transition flex items-center [cite: 37]">
-                    Документация 
-                    <svg class="w-3.5 h-3.5 ml-1 text-saasMuted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            <nav class="hidden md:flex space-x-6 text-sm text-[#666666]">
+                <a href="#technology" class="hover:text-black transition">Технология</a>
+                <a href="#benefits" class="hover:text-black transition">Преимущества</a>
+                <a href="#audit" class="hover:text-black transition">Аудит комплаенса</a>
+                <a href="./docs/index.html" class="hover:text-[#0070f3] transition flex items-center font-medium">
+                    Документация
+                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
             </nav>
             <div>
-                <a href="#calculator" class="bg-saasText hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm">
+                <a href="#audit" class="bg-black hover:bg-[#1f1f1f] text-white text-xs font-medium px-3 py-2 rounded-md transition vercel-shadow">
                     Запросить пилот
                 </a>
             </div>
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-6 pt-20 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-7 space-y-6 text-left">
-            <div class="inline-flex items-center space-x-2 bg-sky-50 border border-sky-100 px-3 py-1 rounded-full text-xs text-saasBrand font-medium">
-                <span class="flex h-2 w-2 rounded-full bg-saasBrand animate-pulse"></span>
-                <span>Соответствие Цифровому кодексу РК 2026 года [cite: 55]</span>
+    <section class="max-w-6xl mx-auto px-6 pt-20 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-b border-[#ececec]">
+        <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center space-x-2 bg-[#f0f7ff] border border-[#d2e9ff] px-3 py-1 rounded-full text-xs text-[#0070f3] font-medium">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#0070f3]"></span>
+                <span>Соответствие Цифровому кодексу РК 2026 года</span>
             </div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-saasText tracking-tight leading-none">
-                Безопасная интеграция <br>
-                <span class="bg-gradient-to-r from-saasBrand to-saasGreen bg-clip-text text-transparent">глобальных LLM</span> <br>
-                в закрытый контур бизнеса [cite: 29]
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black tracking-tighter leading-[0.95]">
+                Безопасный ИИ <br>
+                <span class="text-[#0070f3]">без утечек данных</span> <br>
+                в закрытом контуре.
             </h1>
-            <p class="text-saasMuted text-lg max-w-xl leading-relaxed">
-                Интеллектуальный комплаенс-шлюз **Braint** автоматически изолирует ИИН, БИН, ФИО и счета до отправки данных во внешние нейросети[cite: 55]. Сохраняйте приватность данных без отказа от ИИ-инноваций.
+            <p class="text-[#666666] text-lg max-w-xl leading-relaxed">
+                Интеллектуальный комплаенс-шлюз автоматизированно изолирует ИИН, БИН, финансовые счета и ПДн до отправки запросов во внешние нейросети (OpenAI, DeepSeek, Gemini).
             </p>
-            <div class="pt-4 flex flex-col sm:flex-row items-center gap-4">
-                <a href="#calculator" class="w-full sm:w-auto bg-saasBrand hover:bg-sky-600 text-white font-semibold px-8 py-4 rounded-xl transition text-center shadow-md shadow-sky-500/10">
-                    Развернуть пилот бесплатно [cite: 55]
+            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                <a href="#audit" class="bg-[#0070f3] hover:bg-[#0060df] text-white font-medium text-sm px-6 py-3 rounded-md text-center transition vercel-shadow">
+                    Развернуть пилот бесплатно
                 </a>
-                <a href="./docs/index.html" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-saasText border border-saasBorder font-medium px-8 py-4 rounded-xl transition text-center [cite: 55]">
+                <a href="./docs/index.html" class="bg-white hover:bg-[#fafafa] text-black border border-[#ececec] font-medium text-sm px-6 py-3 rounded-md text-center transition vercel-shadow">
                     Посмотреть API методы
                 </a>
             </div>
         </div>
 
-        <div id="how-it-works" class="lg:col-span-5 bg-white rounded-2xl border border-saasBorder p-6 shadow-saas relative">
-            <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
-                <div class="flex items-center space-x-2">
-                    <div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
-                    <div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
-                    <div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+        <div id="technology" class="lg:col-span-5 bg-white rounded-xl border border-[#ececec] p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-4 border-b border-[#fafafa] pb-3">
+                <div class="flex space-x-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#ececec]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#ececec]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#ececec]"></span>
                 </div>
-                <span class="text-xs font-semibold text-saasMuted uppercase tracking-wider font-mono">Braint Gateway Proxy [cite: 31]</span>
+                <span class="text-[10px] font-mono text-[#999999] uppercase tracking-wider font-semibold">Braint Tokenizer (Live)</span>
             </div>
-            
             <div class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-saasText mb-1.5 font-mono">Входной запрос сотрудника: [cite: 31]</label>
-                    <textarea id="demoInput" class="w-full bg-slate-50 border border-saasBorder rounded-xl p-3 text-sm font-mono text-slate-700 focus:outline-none focus:border-saasBrand transition h-24 resize-none">Договор №714, контрагент ТОО Квант, БИН 010203040506, директор Смагулов А.Б., ИИН 790807300123.</textarea>
+                    <label class="block text-[11px] font-bold text-black uppercase tracking-wider mb-1 font-mono">Вход сотрудника:</label>
+                    <textarea id="demoInput" class="w-full bg-[#fafafa] border border-[#ececec] rounded-lg p-3 text-xs font-mono text-black focus:outline-none focus:border-black transition h-24 resize-none">Контрагент ТОО Квант, БИН 010203040506, директор Смагулов А.Б., ИИН 790807300123.</textarea>
                 </div>
-                
-                <div class="relative">
-                    <div class="absolute -top-3 right-3 bg-saasGreen/10 text-saasGreen border border-saasGreen/20 px-2 py-0.5 rounded text-[10px] font-bold font-mono uppercase">
-                        Маскирование ИБ [cite: 31]
-                    </div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-saasMuted mb-1.5 font-mono">Пакет, передаваемый во внешнюю LLM: [cite: 31]</label>
-                    <div id="demoOutput" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm font-mono text-slate-300 h-28 overflow-y-auto whitespace-pre-wrap leading-relaxed"></div>
+                <div>
+                    <label class="block text-[11px] font-bold text-[#666666] uppercase tracking-wider mb-1 font-mono">Что видит внешняя LLM:</label>
+                    <div id="demoOutput" class="w-full bg-[#111111] rounded-lg p-3 text-xs font-mono text-[#eaeaea] h-24 overflow-y-auto whitespace-pre-wrap leading-relaxed"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="benefits" class="border-t border-saasBorder bg-white py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-20">
-                <h2 class="text-3xl font-bold tracking-tight text-saasText sm:text-4xl">Синхронизация целей внутри организации</h2>
-                <p class="text-saasMuted mt-4 text-base">Единое решение для защиты персональных данных, бесшовной интеграции и оптимизации ИТ-расходов.</p>
+    <section id="benefits" class="max-w-6xl mx-auto px-6 py-20 border-b border-[#ececec] bg-white">
+        <div class="max-w-2xl mb-16">
+            <h2 class="text-3xl font-extrabold tracking-tighter text-black">Синхронизация целей внутри организации</h2>
+            <p class="text-[#666666] mt-2 text-sm">Снимаем регуляторные барьеры ИБ, упрощаем архитектуру ИТ и защищаем бюджет.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white border border-[#ececec] rounded-xl p-6 vercel-shadow transition duration-200">
+                <div class="w-8 h-8 rounded-md bg-[#fafafa] border border-[#ececec] text-black flex items-center justify-center mb-4">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <h3 class="text-base font-bold text-black mb-2">Офицеру ИБ (CISO)</h3>
+                <p class="text-[#666666] text-xs leading-relaxed mb-4">
+                    **Полный Air-Gap комплаенс**. Таблица соответствий находится строго внутри вашей оперативной памяти Redis. Защита от «эффекта мозаики» на базе локального NER слоя.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-saasBg border border-saasBorder rounded-2xl p-8 hover:shadow-saasHover hover:border-saasBrand/30 transition duration-300">
-                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-saasBrand flex items-center justify-center mb-6">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-saasText mb-3">Офицеру ИБ (CISO) [cite: 56]</h3>
-                    <p class="text-saasMuted text-sm leading-relaxed mb-6">
-                        **Полный Air-Gap комплаенс**[cite: 56]. Таблицы соответствия токенов хранятся исключительно во внутренней RAM-памяти Redis[cite: 56]. Данные не покидают периметр вашей ИТ-инфраструктуры[cite: 56].
-                    </p>
-                    <div class="space-y-2 pt-4 border-t border-slate-200 text-xs font-medium text-slate-600">
-                        <div class="flex items-center"><span class="text-saasGreen mr-2">✓</span>Контекстный NER против «эффекта мозаики» [cite: 56]</div>
-                        <div class="flex items-center"><span class="text-saasGreen mr-2">✓</span>Локальный аудит-логгер транзакций [cite: 56]</div>
-                    </div>
+            <div class="bg-white border border-[#ececec] rounded-xl p-6 vercel-shadow transition duration-200">
+                <div class="w-8 h-8 rounded-md bg-[#fafafa] border border-[#ececec] text-black flex items-center justify-center mb-4">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                 </div>
+                <h3 class="text-base font-bold text-black mb-2">ИТ-Директору (CIO / CTO)</h3>
+                <p class="text-[#666666] text-xs leading-relaxed mb-4">
+                    **Развертывание в Docker за 2 часа**. Единый прокси-метод подменяет эндпоинты внешних провайдеров во всех CRM и внутренних ИТ-системах со сквозной скоростью обработки &lt; 10 мс.
+                </p>
+            </div>
 
-                <div class="bg-saasBg border border-saasBorder rounded-2xl p-8 hover:shadow-saasHover hover:border-saasBrand/30 transition duration-300">
-                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-saasBrand flex items-center justify-center mb-6">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-saasText mb-3">ИТ-Директору (CIO / CTO) [cite: 56]</h3>
-                    <p class="text-saasMuted text-sm leading-relaxed mb-6">
-                        **Развертывание в Docker за 2 часа**[cite: 56]. Единый прокси-метод подменяет эндпоинты внешних провайдеров во всех CRM и внутренних ИТ-системах организации[cite: 56].
-                    </p>
-                    <div class="space-y-2 pt-4 border-t border-slate-200 text-xs font-medium text-slate-600">
-                        <div class="flex items-center"><span class="text-saasGreen mr-2">✓</span>Собственный лингвистический слой [cite: 56]</div>
-                        <div class="flex items-center"><span class="text-saasGreen mr-2">✓</span>Задержка обработки промпта &lt; 10 мс [cite: 56]</div>
-                    </div>
+            <div class="bg-white border border-[#ececec] rounded-xl p-6 vercel-shadow transition duration-200">
+                <div class="w-8 h-8 rounded-md bg-[#fafafa] border border-[#ececec] text-black flex items-center justify-center mb-4">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                 </div>
-
-                <div class="bg-saasBg border border-saasBorder rounded-2xl p-8 hover:shadow-saasHover hover:border-saasBrand/30 transition duration-300">
-                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-saasBrand flex items-center justify-center mb-6">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-saasText mb-3">Бизнесу и Финансам (CEO / CFO) [cite: 56]</h3>
-                    <p class="text-saasMuted text-sm leading-relaxed mb-6">
-                        **Оптимизация ИИ-бюджетов (FinOps)**[cite: 56]. Умный семантический кэш предотвращает отправку дублирующихся или схожих по смыслу запросов сотрудников, снижая расходы[cite: 56].
-                    </p>
-                    <div class="space-y-2 pt-4 border-t border-slate-200 text-xs font-medium text-slate-600">
-                        <div class="flex items-center"><span class="text-saasGreen mr-2">✓</span>Сокращение расходов на ИИ до 75% [cite: 56]</div>
-                        <div class="flex items-center"><span class="text-saasGreen mr-2">✓</span>Защита от штрафов за утечку ПДн [cite: 56]</div>
-                    </div>
-                </div>
+                <h3 class="text-base font-bold text-black mb-2">Бизнесу и Финансам (CEO)</h3>
+                <p class="text-[#666666] text-xs leading-relaxed mb-4">
+                    **Оптимизация ИИ-бюджетов (FinOps)**. Умный семантический кэш предотвращает отправку дублирующихся или схожих по смыслу запросов сотрудников, снижая расходы до 70%.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="calculator" class="border-t border-saasBorder bg-saasBg py-24">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold uppercase tracking-wider text-saasBrand bg-sky-50 border border-sky-100 px-3 py-1 rounded-md font-mono">Braint Compliance Risk Radar [cite: 56]</span>
-                <h2 class="text-3xl font-bold text-saasText tracking-tight mt-4">Экспресс-тест уязвимости ИИ-инфраструктуры [cite: 56]</h2>
-                <p class="text-saasMuted mt-2 text-sm">Оцените соответствие ваших процессов ИИ нормам обновленного законодательства РК[cite: 56].</p>
+    <section id="audit" class="max-w-3xl mx-auto px-6 py-24">
+        <div class="text-center mb-10">
+            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0070f3] bg-[#f0f7ff] border border-[#d2e9ff] px-2.5 py-1 rounded-md">Braint Risk Audit</span>
+            <h2 class="text-3xl font-extrabold text-black tracking-tighter mt-3">Проверьте ИИ-инфраструктуру компании</h2>
+            <p class="text-[#666666] mt-1 text-sm">Оцените соответствие ваших процессов ИИ нормам обновленного законодательства РК.</p>
+        </div>
+
+        <div class="bg-white border border-[#ececec] rounded-xl p-6 shadow-sm">
+            <div class="flex items-center justify-between mb-6 text-xs font-mono font-semibold text-[#666666] border-b border-[#fafafa] pb-3">
+                <span id="quizProgressText">Вопрос 1 из 4</span>
+                <div class="w-32 bg-[#fafafa] h-1 rounded-full overflow-hidden border border-[#ececec]">
+                    <div id="quizProgressBar" class="bg-[#0070f3] h-full transition-all duration-300" style="width: 25%"></div>
+                </div>
             </div>
 
-            <div class="bg-white border border-saasBorder rounded-2xl p-8 shadow-saas relative">
-                
-                <div class="flex items-center justify-between mb-8 text-xs font-mono font-semibold text-saasMuted border-b border-slate-100 pb-4">
-                    <span id="quizProgressText">Вопрос 1 из 4 [cite: 57]</span>
-                    <div class="w-1/2 bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                        <div id="quizProgressBar" class="bg-saasBrand h-full transition-all duration-300" style="width: 25%"></div>
+            <div id="quizBlock">
+                <div id="step1" class="quiz-step-content space-y-4">
+                    <h3 class="text-sm font-bold text-black font-mono uppercase tracking-wide">1. Какие ИИ-инструменты сейчас используют сотрудники вашей организации?</h3>
+                    <div class="space-y-2">
+                        <button onclick="handleAnswer(1, 30)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Публичные или внешние облачные API (ChatGPT, Gemini, DeepSeek Web-интерфейсы)
+                        </button>
+                        <button onclick="handleAnswer(1, 10)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Собственные изолированные Open-Source модели в локальном контуре (Llama, Mistral)
+                        </button>
+                        <button onclick="handleAnswer(1, 0)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Использование любых внешних сторонних языковых моделей полностью заблокировано
+                        </button>
                     </div>
                 </div>
 
-                <div id="quizContainer">
-                    <div class="quiz-step space-y-4" data-step="1">
-                        <h3 class="text-base font-bold text-saasText">1. Какие ИИ-инструменты сейчас используют или тестируют сотрудники вашей организации? [cite: 57]</h3>
-                        <div class="grid grid-cols-1 gap-2.5">
-                            <button onclick="nextStep(30)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Публичные или внешние облачные API (ChatGPT, Gemini, DeepSeek) [cite: 57]
-                            </button>
-                            <button onclick="nextStep(10)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Собственные изолированные Open-Source модели (Llama, Mistral) [cite: 57]
-                            </button>
-                            <button onclick="nextStep(0)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Использование сторонних LLM полностью заблокировано регламентом [cite: 57]
-                            </button>
-                        </div>
+                <div id="step2" class="quiz-step-content space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-black font-mono uppercase tracking-wide">2. Какая модель развертывания софта обязательна по вашей ИБ-политике?</h3>
+                    <div class="space-y-2">
+                        <button onclick="handleAnswer(2, 25)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Исключительно локальная установка On-Premise (Внутри закрытого периметра)
+                        </button>
+                        <button onclick="handleAnswer(2, 15)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Рассматриваем гибридные варианты или защищенные частные облака в РК
+                        </button>
+                        <button onclick="handleAnswer(2, 5)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Свободно работаем с глобальной публичной облачной инфраструктурой
+                        </button>
                     </div>
+                </div>
 
-                    <div class="quiz-step space-y-4 hidden" data-step="2">
-                        <h3 class="text-base font-bold text-saasText">2. Какая модель развертывания новых решений является строго обязательной согласно вашей ИБ-политике? [cite: 57]</h3>
-                        <div class="grid grid-cols-1 gap-2.5">
-                            <button onclick="nextStep(25)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Исключительно On-Premise (Внутри закрытого ИТ-периметра) [cite: 57]
-                            </button>
-                            <button onclick="nextStep(15)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Рассматриваем гибридные инсталляции или защищенные частные облака [cite: 57]
-                            </button>
-                            <button onclick="nextStep(5)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Свободно работаем с публичной облачной инфраструктурой [cite: 57]
-                            </button>
-                        </div>
+                <div id="step3" class="quiz-step-content space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-black font-mono uppercase tracking-wide">3. Как сейчас фильтруются персональные данные при запросах сотрудников к ИИ?</h3>
+                    <div class="space-y-2">
+                        <button onclick="handleAnswer(3, 25)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Контроль отсутствует, всё регулируется исключительно внутренними памятками
+                        </button>
+                        <button onclick="handleAnswer(3, 15)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Применяются стандартные статические маски регулярных выражений (Regex)
+                        </button>
+                        <button onclick="handleAnswer(3, 0)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Внедрена интеллектуальная контекстная NER-анонимизация чувствительных сущностей
+                        </button>
                     </div>
+                </div>
 
-                    <div class="quiz-step space-y-4 hidden" data-step="3">
-                        <h3 class="text-base font-bold text-saasText">3. Каким образом сейчас фильтруются или защищаются персональные данные (ПДн) при запросах к ИИ? [cite: 57]</h3>
-                        <div class="grid grid-cols-1 gap-2.5">
-                            <button onclick="nextStep(25)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Контроль отсутствует, всё регулируется внутренними инструкциями [cite: 57]
-                            </button>
-                            <button onclick="nextStep(15)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Используются стандартные статические Regex-фильтры [cite: 57]
-                            </button>
-                            <button onclick="nextStep(0)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Внедрена интеллектуальная контекстная NER-анонимизация сущностей [cite: 57]
-                            </button>
-                        </div>
+                <div id="step4" class="quiz-step-content space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-black font-mono uppercase tracking-wide">4. Какой среднемесячный объем текстовых запросов к LLM планируется в компании?</h3>
+                    <div class="space-y-2">
+                        <button onclick="showFinalResult(20)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Масштаб корпорации (Более 50 000 аналитических промптов в месяц)
+                        </button>
+                        <button onclick="showFinalResult(10)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Умеренный объем (От 10 000 до 50 000 запросов в месяц)
+                        </button>
+                        <button onclick="showFinalResult(5)" class="w-full text-left bg-[#fafafa] hover:bg-black hover:text-white border border-[#ececec] px-4 py-3 rounded-lg transition text-xs font-medium">
+                            Пилотное тестирование (В рамках одной локальной ИТ-команды)
+                        </button>
                     </div>
+                </div>
 
-                    <div class="quiz-step space-y-4 hidden" data-step="4">
-                        <h3 class="text-base font-bold text-saasText">4. Какой объем сквозных текстовых и документных запросов к LLM планируется в вашей организации? [cite: 57]</h3>
-                        <div class="grid grid-cols-1 gap-2.5">
-                            <button onclick="calculateResult(20)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Корпоративный масштаб (Более 50 000 аналитических промптов в месяц) [cite: 57]
-                            </button>
-                            <button onclick="calculateResult(10)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Умеренный объем (От 10 000 до 50 000 запросов в месяц) [cite: 57]
-                            </button>
-                            <button onclick="calculateResult(5)" class="w-full text-left bg-white hover:bg-slate-50 border border-saasBorder hover:border-saasBrand p-3.5 rounded-xl transition text-sm text-slate-700 font-medium">
-                                Пилотное тестирование (В рамках одной-двух ИТ-команд) [cite: 57]
-                            </button>
-                        </div>
+                <div id="stepFinal" class="space-y-6 hidden">
+                    <div class="text-center bg-[#fafafa] border border-[#ececec] rounded-xl p-6">
+                        <span class="block text-[11px] font-mono font-bold text-[#666666] uppercase tracking-wider">Индекс уязвимости ИБ контура:</span>
+                        <span id="finalScore" class="text-5xl font-black text-black tracking-tight mt-1 inline-block">0 / 100</span>
+                        <span id="finalStatus" class="block text-xs font-bold mt-2 uppercase tracking-wide">Анализ...</span>
                     </div>
-
-                    <div class="quiz-step space-y-6 hidden" id="quizFinal">
-                        <div class="text-center">
-                            <span class="block text-xs font-semibold uppercase text-saasMuted tracking-wider font-mono">Уровень уязвимости ИБ контура: [cite: 57]</span>
-                            <span id="scoreValue" class="text-4xl font-black mt-1 inline-block">85 / 100 [cite: 57]</span>
-                            <span id="scoreStatus" class="block text-xs font-bold mt-1 uppercase tracking-wide">Критический риск [cite: 57]</span>
+                    <p id="finalRecommendation" class="text-xs text-[#666666] leading-relaxed border-l-2 border-black pl-3 font-mono"></p>
+                    
+                    <form onsubmit="handleForm(event)" class="border-t border-[#ececec] pt-4 space-y-3">
+                        <p class="text-xs font-bold text-black">Получить архитектурную схему шлюза Braint и Whitepaper комплаенса:</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <input type="text" placeholder="Имя и должность" required class="bg-[#fafafa] border border-[#ececec] rounded-md p-2.5 text-xs focus:outline-none focus:border-black">
+                            <input type="email" placeholder="Рабочий Email" required class="bg-[#fafafa] border border-[#ececec] rounded-md p-2.5 text-xs focus:outline-none focus:border-black">
                         </div>
-
-                        <div class="bg-slate-50 border border-saasBorder rounded-xl p-4 text-xs leading-relaxed text-slate-600">
-                            <p id="recommendationText">Анализ завершен. [cite: 57]</p>
-                        </div>
-
-                        <form id="leadForm" onsubmit="handleFormSubmit(event)" class="border-t border-slate-100 pt-4 space-y-3">
-                            <p class="text-xs text-saasText font-medium">Получите архитектурную схему защиты контура шлюзом Braint и Whitepaper «LLM-комплаенс в РК»: [cite: 57]</p>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <input type="text" placeholder="Ваше имя и должность" required class="bg-white border border-saasBorder rounded-lg p-2.5 text-xs text-saasText focus:outline-none focus:border-saasBrand">
-                                <input type="email" placeholder="Рабочий Email" required class="bg-white border border-saasBorder rounded-lg p-2.5 text-xs text-saasText focus:outline-none focus:border-saasBrand">
-                            </div>
-                            <button type="submit" class="w-full bg-saasBrand hover:bg-sky-600 text-white font-bold text-xs py-3 rounded-lg transition uppercase tracking-wider shadow-sm">
-                                Получить пакет комплаенса и спецификацию [cite: 57]
-                            </button>
-                        </form>
-                        <div id="formSuccess" class="hidden text-center py-4 text-saasGreen font-mono text-xs font-semibold">
-                            ✔ Спасибо! Технический пакет спецификаций отправлен на указанный адрес. [cite: 57]
-                        </div>
+                        <button type="submit" class="w-full bg-black hover:bg-[#1f1f1f] text-white font-bold text-xs py-3 rounded-md transition uppercase tracking-wider vercel-shadow">
+                            Получить технический пакет
+                        </button>
+                    </form>
+                    <div id="successBlock" class="hidden text-center text-xs font-mono font-bold text-[#0070f3] py-2">
+                        ✔ Документы успешно отправлены на корпоративный адрес.
                     </div>
                 </div>
             </div>
@@ -270,75 +242,65 @@
     </section>
 
     <script>
+        // Код виджета маскирования
         const demoInput = document.getElementById('demoInput');
         const demoOutput = document.getElementById('demoOutput');
-
         function maskText(text) {
             let masked = text;
-            masked = masked.replace(/\b\d{12}\b/g, '<span class="text-sky-400 font-bold border border-sky-400/30 px-1 py-0.5 rounded bg-sky-500/10">[ID_IIN_1]</span>');
-            masked = masked.replace(/\b\d{12}\b/g, '<span class="text-sky-400 font-bold border border-sky-400/30 px-1 py-0.5 rounded bg-sky-500/10">[ID_BIN_1]</span>');
-            masked = masked.replace(/Смагулов\s+А\.Б\./g, '<span class="text-emerald-400 font-bold border border-emerald-400/30 px-1 py-0.5 rounded bg-emerald-500/10">[PERSON_1]</span>');
-            masked = masked.replace(/ТОО\s+Квант/g, '<span class="text-amber-400 font-bold border border-amber-400/30 px-1 py-0.5 rounded bg-amber-500/10">[COMPANY_1]</span>');
+            masked = masked.replace(/\b\d{12}\b/g, '<span class="text-[#0070f3] font-mono font-bold bg-[#f0f7ff] px-1 rounded border border-[#d2e9ff]">[ID_IIN_1]</span>');
+            masked = masked.replace(/Смагулов\s+А\.Б\./g, '<span class="text-emerald-600 font-mono font-bold bg-emerald-50 px-1 rounded border border-emerald-200">[PERSON_1]</span>');
+            masked = masked.replace(/ТОО\s+Квант/g, '<span class="text-amber-600 font-mono font-bold bg-amber-50 px-1 rounded border border-amber-200">[COMPANY_1]</span>');
             return masked;
         }
-
         demoInput.addEventListener('input', () => { demoOutput.innerHTML = maskText(demoInput.value); });
         demoOutput.innerHTML = maskText(demoInput.value);
-    </script>
 
-    <script>
+        // Исправленная логика квиза
         let currentStep = 1;
-        let totalScore = 0;
+        let score = 0;
 
-        function nextStep(score) {
-            totalScore += score;
-            document.querySelector(`.quiz-step[data-step="${currentStep}"]`).classList.add('hidden');
-            currentStep++;
-            document.querySelector(`.quiz-step[data-step="${currentStep}"]`).classList.remove('hidden');
-            updateProgress();
-        }
-
-        function calculateResult(score) {
-            totalScore += score;
-            document.querySelector(`.quiz-step[data-step="${currentStep}"]`).classList.add('hidden');
+        function handleAnswer(step, stepScore) {
+            score += stepScore;
+            document.getElementById(`step${step}`).classList.add('hidden');
+            currentStep = step + 1;
+            document.getElementById(`step${currentStep}`).classList.remove('hidden');
             
-            document.getElementById('quizProgressText').innerText = "Анализ завершен";
-            document.getElementById('quizProgressBar').style.width = "100%";
-            document.getElementById('quizFinal').classList.remove('hidden');
-            
-            const scoreValEl = document.getElementById('scoreValue');
-            const scoreStatusEl = document.getElementById('scoreStatus');
-            const recTextEl = document.getElementById('recommendationText');
-            
-            scoreValEl.innerText = `${totalScore} / 100`;
-            
-            if (totalScore >= 60) {
-                scoreValEl.className = "text-4xl font-black text-red-500";
-                scoreStatusEl.innerText = "Критический уровень риска";
-                scoreStatusEl.className = "block text-xs font-bold text-red-500 mt-1 uppercase tracking-wide";
-                recTextEl.innerHTML = "**Рекомендация ИБ:** Текущая инфраструктура уязвима перед регуляторами. Прямая отправка данных во внешние нейросети в открытом виде нарушает нормы Цифрового кодекса РК 2026 года и требования конфиденциальности. Необходима On-Premise токенизация запросов.";
-            } else if (totalScore >= 30) {
-                scoreValEl.className = "text-4xl font-black text-amber-500";
-                scoreStatusEl.innerText = "Средний уровень риска";
-                scoreStatusEl.className = "block text-xs font-bold text-amber-500 mt-1 uppercase tracking-wide";
-                recTextEl.innerHTML = "**Рекомендация ИБ:** Использование статических фильтров частично защищает от прямых утечек, но оставляет систему уязвимой перед «эффектом мозаики» и грамматической деградацией казахского языка. Рекомендуется интеграция гибридного шлюза Braint.";
-            } else {
-                scoreValEl.className = "text-4xl font-black text-emerald-500";
-                scoreStatusEl.innerText = "Низкий уровень риска";
-                scoreStatusEl.className = "block text-xs font-bold text-emerald-500 mt-1 uppercase tracking-wide";
-                recTextEl.innerHTML = "**Рекомендация FinOps:** Риски безопасности минимизированы. Однако отсутствие сквозного семантического кэширования приводит к переплате до 70% бюджетов на инференс LLM. Вы можете использовать Braint как оптимизатор ИТ-затрат.";
-            }
-        }
-
-        function updateProgress() {
             document.getElementById('quizProgressText').innerText = `Вопрос ${currentStep} из 4`;
             document.getElementById('quizProgressBar').style.width = `${currentStep * 25}%`;
         }
 
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            document.getElementById('leadForm').classList.add('hidden');
-            document.getElementById('formSuccess').classList.remove('hidden');
+        function showFinalResult(stepScore) {
+            score += stepScore;
+            document.getElementById(`step4`).classList.add('hidden');
+            document.getElementById('stepFinal').classList.remove('hidden');
+            
+            document.getElementById('quizProgressText').innerText = "Аудит завершен";
+            document.getElementById('quizProgressBar').style.width = "100%";
+
+            const finalScoreEl = document.getElementById('finalScore');
+            const finalStatusEl = document.getElementById('finalStatus');
+            const finalRecEl = document.getElementById('finalRecommendation');
+
+            finalScoreEl.innerText = `${score} / 100`;
+
+            if (score >= 60) {
+                finalStatusEl.innerText = "Критический уровень риска";
+                finalStatusEl.className = "block text-xs font-bold text-red-500 mt-2 uppercase tracking-wide";
+                finalRecEl.innerText = "Прямая отправка данных во внешние нейросети без On-Premise токенизации нарушает требования конфиденциальности и нормы Цифрового кодекса РК 2026. Рекомендуется развертывание шлюза Braint в DMZ-зоне компании.";
+            } else if (score >= 30) {
+                finalStatusEl.innerText = "Средний уровень риска";
+                finalStatusEl.className = "block text-xs font-bold text-amber-500 mt-2 uppercase tracking-wide";
+                finalRecEl.innerText = "Статические Regex фильтры пропускают утечки из-за эффекта мозаики и ломают окончания в казахском языке (агглютинация). Требуется интеллектуальный лингвистический слой.";
+            } else {
+                finalStatusEl.innerText = "Низкий уровень риска";
+                finalStatusEl.className = "block text-xs font-bold text-emerald-500 mt-2 uppercase tracking-wide";
+                finalRecEl.innerText = "Защита на базовом уровне обеспечена. Однако отсутствие семантического кэширования приводит к переплате до 70% бюджета на повторные одинаковые запросы ваших сотрудников во внешние LLM.";
+            }
+        }
+
+        function handleForm(e) {
+            e.preventDefault();
+            document.getElementById('successBlock').classList.remove('hidden');
         }
     </script>
 </body>
