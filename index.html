@@ -59,7 +59,7 @@
             </div>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black tracking-tighter sm:leading-[0.95] leading-tight">
                 Используйте GPT-5 <br class="hidden sm:inline">
-                и Claude 3.5 в изолированном <br>
+                и Claude 3.5 in изолированном <br>
                 <span class="text-[#0070F3]">контуре с гарантией абсолютной безопасности</span>
             </h1>
             <p class="text-[#334155] text-lg leading-relaxed max-w-xl font-medium">
@@ -450,13 +450,13 @@
             document.getElementById(`tabBtn-${tId}`).className = "tab-btn px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider rounded-md border bg-black text-white border-black thumb-element transition";
         }
 
-        // АБСОЛЮТНО ОТЛАЖЕННАЯ ФУНКЦИЯ ОТПРАВКИ ЛИДОВ
+        // ИСПРАВЛЕННАЯ ФУНКЦИЯ ОТПРАВКИ ЛИДОВ В TELEGRAM С ПОДДЕРЖКОЙ FAIL-SAFE
         function sendPilotToTelegram(event) {
             event.preventDefault();
             
             // Вставьте ваши реальные данные ключей для боевого приема лидов
-            const botToken = "ТВОЙ_API_ТОКЕН_БОТА";
-            const chatId = "ТВОЙ_CHAT_ID_ИЛИ_КАНАЛА";
+            const botToken = "8861623862:AAH85-XB-VU9Ts2BV3dbmz0fRBJq9KZOntI";
+            const chatId = "163275960";
 
             const email = document.getElementById('formEmail').value;
             const phone = document.getElementById('formPhone').value;
@@ -466,9 +466,9 @@
 
             const textMessage = `🔔 Заявка на пилот Braint.ai\n\n• Компания: ${company}\n• Должность: ${role}\n• Email: ${email}\n• Телефон: ${phone}`;
 
-            // Железный перехват дефолтных значений: Защита от Network Error при тестах
-            if (!botToken || botToken.includes("ТВОЙ_API_ТОКЕН") || botToken === "") {
-                console.warn("Braint Log: Обнаружен тестовый режим формы. Имитируем локальный успех UI.");
+            // Исправленная логика перехвата дефолтных значений: Защита от Network Error
+            if (!botToken || botToken === "" || botToken.includes("ТВОЙ_API_ТОКЕН") || botToken.includes("API_TOKEN")) {
+                console.warn("Braint Log: Форма в режиме локального тестирования. Симулируем успешную отправку.");
                 document.getElementById('pilotSuccess').classList.remove('hidden');
                 document.getElementById('pilotError').classList.add('hidden');
                 document.getElementById('pilotForm').reset();
@@ -493,7 +493,7 @@
                     document.getElementById('pilotError').classList.add('hidden');
                     document.getElementById('pilotForm').reset();
                 } else {
-                    throw new Error("Telegram API Rejected Response");
+                    throw new Error("Telegram API Error");
                 }
             })
             .catch(error => {
