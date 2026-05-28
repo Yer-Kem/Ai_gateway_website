@@ -18,11 +18,10 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
         body { font-family: 'Inter', sans-serif; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
         h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
         p, li { font-size: 16px !important; line-height: 1.5 !important; color: #1E293B !important; }
-        .v-shadow { box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.02); }
         .thumb-element { min-height: 48px; }
     </style>
 </head>
@@ -36,14 +35,14 @@
                 <span class="text-xs text-[#94A3B8] border-l border-[#ECECEC] pl-3 font-mono uppercase font-bold tracking-wider">Ресурсный центр</span>
             </div>
             <div>
-                <a href="./index.html" class="text-xs font-semibold text-[#64748B] hover:text-black transition flex items-center thumb-element justify-center px-4 border border-neutral-200 rounded-md bg-white">
+                <a href="./index.html" class="text-xs font-semibold text-[#1E293B] hover:text-black transition flex items-center thumb-element justify-center px-4 border border-neutral-200 rounded-md bg-white">
                     Назад
                 </a>
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 py-12 space-y-16">
+    <main class="max-w-4xl mx-auto px-6 py-12 space-y-12">
         
         <div class="border-b border-neutral-200 pb-6">
             <span class="text-xs font-mono font-bold uppercase tracking-widest text-[#0070F3]">Expert Compliance Media (TOFU)</span>
@@ -51,48 +50,108 @@
             <p class="text-[#64748B] mt-2 text-sm max-w-xl">Экспертные исследования, юридические прецеденты и архитектурные разборы для CISO и ИТ-директоров enterprise-сегмента.</p>
         </div>
 
-        <article class="space-y-4">
+        <article class="space-y-3">
             <div class="flex items-center space-x-2 text-xs font-mono text-[#94A3B8]">
                 <span class="bg-blue-50 text-[#0070F3] px-2 py-0.5 rounded font-bold uppercase">Регулирование</span>
-                <span>• 2026 г.</span>
+                <span>• Статья 1</span>
             </div>
-            <h2 class="text-2xl font-bold tracking-tight text-black">Цифровой кодекс РК 2026: Новые правила игры для ИИ в корпоративном секторе</h2>
+            <h2 class="text-xl font-bold tracking-tight text-black">Цифровой кодекс РК 2026: Новые правила игры для ИИ в корпоративном секторе</h2>
             <p class="text-[#1E293B] leading-relaxed text-sm">
-                Введение Цифрового кодекса РК установило жесткую правовую рамку для использования зарубежных генеративных моделей. Ключевая коллизия заключается в требовании обязательной локализации баз данных, обрабатывающих персональные данные граждан Казахстана. Прямая отправка немодифицированных промптов в облачные дата-центры провайдеров (OpenAI, DeepSeek) теперь трактуется как незаконная трансграничная передача информации без согласия субъекта. 
+                Введение Цифрового кодекса РК установило жесткую правовую рамку для использования зарубежных генеративных моделей. Ключевая коллизия заключается в требовании обязательной локализации баз данных, обрабатывающих персональные данные граждан Казахстана. Прямая отправка немодифицированных промптов в облачные дата-центры провайдеров теперь трактуется как незаконная трансграничная передача информации без согласия субъекта.
             </p>
             <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-xs font-mono text-[#334155]">
                 <span class="font-bold text-black block mb-1">Связь с инфраструктурой Braint:</span>
-                Шлюз решает данное противоречие на фундаментальном уровне. Развертывание On-Premise контейнеров внутри локальной DMZ-зоны организации перехватывает трафик до его отправки наружу, полностью изолируя и локализуя таблицы подстановок токенов на серверах внутри РК.
+                Шлюз решает данное противоречие. Развертывание On-Premise контейнеров внутри локальной DMZ-зоны организации перехватывает трафик до его отправки наружу, полностью изолируя и локализуя таблицы подстановок токенов на серверах внутри РК.
             </div>
         </article>
 
-        <article class="space-y-4 border-t border-neutral-200 pt-10">
+        <article class="space-y-3 border-t border-neutral-200 pt-8">
             <div class="flex items-center space-x-2 text-xs font-mono text-[#94A3B8]">
                 <span class="bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-bold uppercase">Банковская тайна</span>
-                <span>• 2026 г.</span>
+                <span>• Статья 2</span>
             </div>
-            <h2 class="text-2xl font-bold tracking-tight text-black">Требования АРРФР и поправки АФМ: как защитить банковскую тайну при работе с GPT-моделями</h2>
+            <h2 class="text-xl font-bold tracking-tight text-black">Требования АРРФР и поправки АФМ: как защитить банковскую тайну при работе с GPT-моделями</h2>
             <p class="text-[#1E293B] leading-relaxed text-sm">
                 Банковский сектор РК находится под двойным давлением: с одной стороны, необходимость оптимизации андеррайтинга и скоринга через ИИ, с другой — жесткие инструкции АРРФР и регламенты АФМ по противодействию утечкам конфиденциальной информации. Текстовые запросы сотрудников в LLM часто содержат скрытые банковские идентификаторы, номера счетов (IBAN) и персональные сведения клиентов, утечка которых грозит отзывом лицензий.
             </p>
             <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-xs font-mono text-[#334155]">
                 <span class="font-bold text-black block mb-1">Связь с инфраструктурой Braint:</span>
-                Модуль отраслевой сегментации Braint шлюза содержит специализированные лингвистические и Regex-пайплайны, настроенные на мгновенное распознавание банковских сущностей РК, гарантируя, что ни один внутренний номер счет не покинет защищенный периметр банка.
+                Модуль отраслевой сегментации шлюза содержит специализированные лингвистические и Regex-пайплайны, настроенные на мгновенное распознавание банковских сущностей РК, гарантируя, что ни один внутренний номер счета не покинет защищенный периметр банка.
             </div>
         </article>
 
-        <article class="space-y-4 border-t border-neutral-200 pt-10 pb-12">
+        <article class="space-y-3 border-t border-neutral-200 pt-8">
             <div class="flex items-center space-x-2 text-xs font-mono text-[#94A3B8]">
                 <span class="bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold uppercase">Кибербезопасность</span>
-                <span>• 2026 г.</span>
+                <span>• Статья 3</span>
             </div>
-            <h2 class="text-2xl font-bold tracking-tight text-black">Риски «эффекта мозаики» в информационной безопасности: почему частичное скрытие данных больше не защищает от ИИ-дешифровки</h2>
+            <h2 class="text-xl font-bold tracking-tight text-black">Риски «эффекта мозаики» в информационной безопасности: почему частичное скрытие данных больше не защищает от ИИ-дешифровки</h2>
             <p class="text-[#1E293B] leading-relaxed text-sm">
                 Большинство корпораций ошибочно полагают, что банальное маскирование очевидных регулярных выражений (например, замена ИИН на звездочки) полностью защищает данные. Однако современные большие языковые модели способны проводить контекстный реверс-инжиниринг. Используя «эффект мозаики», нейросеть сопоставляет косвенные признаки, упомянутые в промпте должностные обязанности, названия локальных ТОО и открытые метаданные, с высокой точностью де-анонимизируя личность.
             </p>
             <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-xs font-mono text-[#334155]">
                 <span class="font-bold text-black block mb-1">Связь с инфраструктурой Braint:</span>
                 Braint использует не статическое, а контекстное семантическое маскирование на базе локальных легковесных SLM-моделей (NER). Шлюз оценивает промпт как целостный граф связей и заменяет не только жесткие сущности, но и сопутствующий деанонимизирующий контекст, полностью нивелируя риск ИИ-дешифровки.
+            </div>
+        </article>
+
+        <article class="space-y-3 border-t border-neutral-200 pt-8">
+            <div class="flex items-center space-x-2 text-xs font-mono text-[#94A3B8]">
+                <span class="bg-blue-50 text-[#0070F3] px-2 py-0.5 rounded font-bold uppercase">ИТ-Инфраструктура</span>
+                <span>• Статья 4</span>
+            </div>
+            <h2 class="text-xl font-bold tracking-tight text-black">Локальный инференс SLM-моделей в Air-Gap сетях: минимизация TCO без потери Latency</h2>
+            <p class="text-[#1E293B] leading-relaxed text-sm">
+                При проектировании ИБ-шлюзов ключевым барьером традиционно выступала стоимость аппаратного обеспечения. Необходимость закупки дорогостоящих серверных GPU-ускорителей для выполнения базовых задач анонимизации останавливала пилоты. Современный подход требует тонкой оптимизации и квантования весов малых языковых моделей для их выполнения на стандартных многопоточных CPU-процессорах без ущерба для скорости отклика инфраструктуры.
+            </p>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-xs font-mono text-[#334155]">
+                <span class="font-bold text-black block mb-1">Связь с инфраструктурой Braint:</span>
+                Локальный NER-движок Braint работает на оптимизированных CPU-алгоритмах. Это снижает общую стоимость владения архитектурой (TCO) и позволяет интегрировать шлюз в имеющиеся свободные мощности серверных стоек компании.
+            </div>
+        </article>
+
+        <article class="space-y-3 border-t border-neutral-200 pt-8">
+            <div class="flex items-center space-x-2 text-xs font-mono text-[#94A3B8]">
+                <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold uppercase">Лингвистика ИИ</span>
+                <span>• Статья 5</span>
+            </div>
+            <h2 class="text-xl font-bold tracking-tight text-black">Фономорфология агглютинативных языков в задачах обратной де-токенизации промптов</h2>
+            <p class="text-[#1E293B] leading-relaxed text-sm">
+                Стандартные англоязычные шлюзы защиты данных разрушают синтаксис казахского языка. Заменяя корень слова токеном (например, название ТОО), внешняя LLM добавляет к нему падежные суффиксы в соответствии с логикой запроса. При обратной подстановке реальных данных на выходе образуются грамматически разорванные конструкции (например, «Қазақмыс-ке»), что делает невозможным внедрение ИИ-поддержки в клиентские чаты.
+            </p>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-xs font-mono text-[#334155]">
+                <span class="font-bold text-black block mb-1">Связь с инфраструктурой Braint:</span>
+                Модуль KazNLP шлюза Braint в автоматическом режиме осуществляет фономорфологический анализ корня слова по закону сингармонизма, налету перестраивая падежные окончания и выдавая сотруднику грамматически безупречный текст.
+            </div>
+        </article>
+
+        <article class="space-y-3 border-t border-neutral-200 pt-8">
+            <div class="flex items-center space-x-2 text-xs font-mono text-[#94A3B8]">
+                <span class="bg-red-50 text-red-700 px-2 py-0.5 rounded font-bold uppercase">FinOps</span>
+                <span>• Статья 6</span>
+            </div>
+            <h2 class="text-xl font-bold tracking-tight text-black">Векторные базы данных и семантическое кэширование как инструмент контроля затрат на API</h2>
+            <p class="text-[#1E293B] leading-relaxed text-sm">
+                Корпоративное использование коммерческих LLM сопряжено с неконтролируемым ростом затрат на токены. Согласно исследованиям, до 40% запросов сотрудников в рамках одного департамента дублируют друг друга по смыслу. Классическое посимвольное сравнение строк не способно перехватить эти запросы, так как люди формулируют мысли по-разному. Решением является внедрение семантического анализа, замеряющего косинусное расстояние между эмбеддингами.
+            </p>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-xs font-mono text-[#334155]">
+                <span class="font-bold text-black block mb-1">Связь с инфраструктурой Braint:</span>
+                Встроенный векторный кэш шлюза Braint перехватывает схожие по смыслу промпты и отдает готовый ответ из локального хранилища с задержкой менее 10 мс, полностью разгружая внешний ИИ-канал и сокращая ИТ-бюджеты.
+            </div>
+        </article>
+
+        <article class="space-y-3 border-t border-neutral-200 pt-8 pb-12">
+            <div class="flex items-center space-x-2 text-xs font-mono text-[#94A3B8]">
+                <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-bold uppercase">Zero-Trust ИБ</span>
+                <span>• Статья 7</span>
+            </div>
+            <h2 class="text-xl font-bold tracking-tight text-black">Регламент In-Memory вычислений: защита конфиденциальных связей в оперативной памяти сервера</h2>
+            <p class="text-[#1E293B] leading-relaxed text-sm">
+                Применение токенизации накладывает повышенные требования к безопасности самого прокси-элемента. Если связка «Токен -> Реальные ПДн» записывается на жесткие диски (SSD/HDD), возникает риск компрометации данных при физическом извлечении накопителей из серверной стойки или несанкционированном доступе к логам СУБД. Защита enterprise-уровня требует полного ухода от персистентного сохранения связей.
+            </p>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-xs font-mono text-[#334155]">
+                <span class="font-bold text-black block mb-1">Связь с инфраструктурой Braint:</span>
+                Все временные таблицы подстановок шлюза удерживаются исключительно внутри энергозависимой оперативной памяти (In-Memory Isolation). При прерывании питания или принудительном перезапуске ноды Docker данные мгновенно и безвозвратно стираются.
             </div>
         </article>
 
