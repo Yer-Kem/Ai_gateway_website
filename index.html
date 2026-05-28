@@ -59,7 +59,7 @@
             </div>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black tracking-tighter sm:leading-[0.95] leading-tight">
                 Используйте GPT-5 <br class="hidden sm:inline">
-                и Claude 3.5 in изолированном <br>
+                и Claude 3.5 в изолированном <br>
                 <span class="text-[#0070F3]">контуре с гарантией абсолютной безопасности</span>
             </h1>
             <p class="text-[#334155] text-lg leading-relaxed max-w-xl font-medium">
@@ -296,7 +296,7 @@
         <form id="pilotForm" onsubmit="sendPilotToTelegram(event)" class="space-y-3 bg-white border border-neutral-200 rounded-xl p-6 shadow-sm v-shadow">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                    <label class="block text-[10px] font-mono font-bold text-[#64748B] uppercase mb-1">Корпоративный Email:</label>
+                    <label class="block text-[10px] font-mono font-bold text-[#64748B] uppercase mb-1">Corporate Email:</label>
                     <input type="email" id="formEmail" required placeholder="name@company.com" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
                 </div>
                 <div>
@@ -393,7 +393,7 @@
             {
                 theme: "Retail & E-commerce",
                 badgeClass: "text-[9px] font-mono font-bold uppercase bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded border border-emerald-100",
-                raw: "Заказ №1234567890 в Kaspi Магазине, покупатель Иванова О.В., телефон +77071234567, адрес Аль-Фараби 17.",
+                raw: "Заказ №1234567890 in Kaspi Магазине, покупатель Иванова О.В., телефон +77071234567, адрес Аль-Фараби 17.",
                 masked: `Заказ <span class="text-purple-400 font-bold">[ORDER_ID_1]</span> в торговой платформе, покупатель <span class="text-emerald-400 font-bold">[PERSON_1]</span>, телефон <span class="text-[#0070F3] font-bold">[PHONE_1]</span>, адрес <span class="text-amber-400 font-bold">[ADDRESS_1]</span>.`,
                 response: "Доставка подтверждена. Передайте курьеру данные для отправки на адрес Аль-Фараби 17 для клиента Ивановой О.В. по заказу №1234567890."
             }
@@ -450,11 +450,11 @@
             document.getElementById(`tabBtn-${tId}`).className = "tab-btn px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider rounded-md border bg-black text-white border-black thumb-element transition";
         }
 
-        // ИСПРАВЛЕННАЯ ФУНКЦИЯ ОТПРАВКИ ЛИДОВ В TELEGRAM С ПОДДЕРЖКОЙ FAIL-SAFE
+        // БОЕВАЯ ИНТЕГРАЦИЯ С ТЕЛЕГРАМ-БОТОМ
         function sendPilotToTelegram(event) {
             event.preventDefault();
             
-            // Вставьте ваши реальные данные ключей для боевого приема лидов
+            // Твои реальные прописанные ключи инфраструктуры Telegram
             const botToken = "8861623862:AAH85-XB-VU9Ts2BV3dbmz0fRBJq9KZOntI";
             const chatId = "163275960";
 
@@ -465,15 +465,6 @@
             const submitBtn = document.getElementById('submitBtn');
 
             const textMessage = `🔔 Заявка на пилот Braint.ai\n\n• Компания: ${company}\n• Должность: ${role}\n• Email: ${email}\n• Телефон: ${phone}`;
-
-            // Исправленная логика перехвата дефолтных значений: Защита от Network Error
-            if (!botToken || botToken === "" || botToken.includes("8861623862:AAH85-XB-VU9Ts2BV3dbmz0fRBJq9KZOntI") || botToken.includes("API_TOKEN")) {
-                console.warn("Braint Log: Форма в режиме локального тестирования. Симулируем успешную отправку.");
-                document.getElementById('pilotSuccess').classList.remove('hidden');
-                document.getElementById('pilotError').classList.add('hidden');
-                document.getElementById('pilotForm').reset();
-                return;
-            }
 
             submitBtn.disabled = true;
             submitBtn.innerText = "Отправка...";
@@ -493,11 +484,11 @@
                     document.getElementById('pilotError').classList.add('hidden');
                     document.getElementById('pilotForm').reset();
                 } else {
-                    throw new Error("Telegram API Error");
+                    throw new Error("Telegram API rejected packet");
                 }
             })
             .catch(error => {
-                console.error("Braint Bot Network Error:", error);
+                console.error("Braint Bot Core Error:", error);
                 document.getElementById('pilotError').classList.remove('hidden');
                 document.getElementById('pilotSuccess').classList.add('hidden');
             })
