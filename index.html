@@ -31,6 +31,40 @@
 </head>
 <body class="bg-[#FAFAFA] text-[#0F172A] antialiased theme-transition">
 
+    <div id="successModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white border border-neutral-200 rounded-xl p-8 max-w-md w-full shadow-2xl text-center space-y-4 transform scale-100 transition-transform duration-300">
+            <div class="w-12 h-12 bg-blue-50 text-[#0070F3] rounded-full flex items-center justify-center mx-auto border border-blue-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-xl font-extrabold text-black tracking-tight">Заявка зарегистрирована</h3>
+                <p class="text-[#334155] text-sm leading-relaxed">Мы свяжемся с вами для согласования NDA.</p>
+            </div>
+            <button onclick="closeSuccessModal()" class="w-full bg-black hover:bg-neutral-800 text-white font-semibold text-sm rounded-md transition tracking-wide thumb-element v-shadow">
+                Понятно
+            </button>
+        </div>
+    </div>
+
+    <div id="errorModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white border border-neutral-200 rounded-xl p-8 max-w-md w-full shadow-2xl text-center space-y-4">
+            <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto border border-red-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-xl font-extrabold text-black tracking-tight">Ошибка подключения</h3>
+                <p class="text-[#334155] text-sm leading-relaxed">Ошибка отправки данных. Пожалуйста, проверьте настройки подключения или повторите попытку позже.</p>
+            </div>
+            <button onclick="document.getElementById('errorModal').classList.add('hidden')" class="w-full bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border border-neutral-300 text-sm font-medium rounded-md transition thumb-element">
+                Закрыть
+            </button>
+        </div>
+    </div>
+
     <header class="border-b border-[#ECECEC] sticky top-0 bg-white/80 backdrop-blur-md z-40">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
@@ -318,8 +352,6 @@
             <p class="text-[10px] text-[#94A3B8] font-sans leading-normal border-t border-neutral-100 pt-3 mt-2">
                 * Конфиденциальность гарантирована: мы бережно относимся ко всей информации, которую вы нам передаете, строго соблюдаем банковскую и коммерческую тайну и никогда не передаем данные третьим лицам. Перед развертыванием пилота подписывается двустороннее NDA.
             </p>
-            <div id="pilotSuccess" class="hidden text-center text-xs font-mono font-bold text-emerald-600 py-2">✔ Заявка зарегистрирована. Наш инженер свяжется с вами для согласования NDA.</div>
-            <div id="pilotError" class="hidden text-center text-xs font-mono font-bold text-red-600 py-2">Ошибка отправки данных. Пожалуйста, проверьте настройки подключения.</div>
         </form>
     </section>
 
@@ -431,7 +463,6 @@
             }, 600);
         }
 
-        // Исправлено сопоставление названия функций во всем конвейере анимации
         function triggerResponseLayer(activeCase) {
             setTimeout(() => {
                 outputEl.innerHTML = activeCase.response;
@@ -451,11 +482,16 @@
             document.getElementById(`tabBtn-${tId}`).className = "tab-btn px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider rounded-md border bg-black text-white border-black thumb-element transition";
         }
 
-        // БОЕВАЯ ИНТЕГРАЦИЯ С ТЕЛЕГРАМ-БОТОМ
+        // ОЧИСТКА ФОРМЫ И ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('pilotForm').reset();
+        }
+
+        // БОЕВАЯ ИНТЕГРАЦИЯ С ТЕЛЕГРАМ-БОТОМ + ВСПЛЫВАЮЩЕЕ ОКНО SUCCESS OVERLAY
         function sendPilotToTelegram(event) {
             event.preventDefault();
             
-            // Твои реальные прописанные ключи инфраструктуры Telegram
             const botToken = "8861623862:AAH85-XB-VU9Ts2BV3dbmz0fRBJq9KZOntI";
             const chatId = "163275960";
 
@@ -466,14 +502,6 @@
             const submitBtn = document.getElementById('submitBtn');
 
             const textMessage = `🔔 Заявка на пилот Braint.ai\n\n• Компания: ${company}\n• Должность: ${role}\n• Email: ${email}\n• Телефон: ${phone}`;
-
-            // Fail-Safe защита: если токен пустой или заблокирован — эмулируем мгновенный локальный успех, убирая падение по ошибке сети
-            if (!botToken || botToken === "" || botToken.includes("API_ТОКЕН") || botToken.includes("AAH85-XB-VU9Ts2BV3dbmz0fRBJq9KZOntI") === false) {
-                document.getElementById('pilotSuccess').classList.remove('hidden');
-                document.getElementById('pilotError').classList.add('hidden');
-                document.getElementById('pilotForm').reset();
-                return;
-            }
 
             submitBtn.disabled = true;
             submitBtn.innerText = "Отправка...";
@@ -489,17 +517,17 @@
             })
             .then(response => {
                 if (response.ok) {
-                    document.getElementById('pilotSuccess').classList.remove('hidden');
-                    document.getElementById('pilotError').classList.add('hidden');
-                    document.getElementById('pilotForm').reset();
+                    // Разворачиваем всплывающее окно успеха прямо по центру экрана
+                    document.getElementById('successModal').classList.remove('hidden');
+                    document.getElementById('errorModal').classList.add('hidden');
                 } else {
-                    throw new Error("Telegram API rejected packet");
+                    throw new Error("Telegram API HTTP Error");
                 }
             })
             .catch(error => {
                 console.error("Braint Bot Core Error:", error);
-                document.getElementById('pilotError').classList.remove('hidden');
-                document.getElementById('pilotSuccess').classList.add('hidden');
+                document.getElementById('errorModal').classList.remove('hidden');
+                document.getElementById('successModal').classList.add('hidden');
             })
             .finally(() => {
                 submitBtn.disabled = false;
