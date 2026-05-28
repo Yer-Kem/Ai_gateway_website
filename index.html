@@ -467,7 +467,7 @@
             const textMessage = `🔔 Заявка на пилот Braint.ai\n\n• Компания: ${company}\n• Должность: ${role}\n• Email: ${email}\n• Телефон: ${phone}`;
 
             // Исправленная логика перехвата дефолтных значений: Защита от Network Error
-            if (!botToken || botToken === "" || botToken.includes("ТВОЙ_API_ТОКЕН") || botToken.includes("API_TOKEN")) {
+            if (!botToken || botToken === "" || botToken.includes("8861623862:AAH85-XB-VU9Ts2BV3dbmz0fRBJq9KZOntI") || botToken.includes("API_TOKEN")) {
                 console.warn("Braint Log: Форма в режиме локального тестирования. Симулируем успешную отправку.");
                 document.getElementById('pilotSuccess').classList.remove('hidden');
                 document.getElementById('pilotError').classList.add('hidden');
