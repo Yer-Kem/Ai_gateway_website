@@ -40,8 +40,8 @@
             <nav class="hidden md:flex space-x-6 text-sm font-medium text-[#64748B]">
                 <a href="#solutions" class="hover:text-black transition">Отраслевые решения</a>
                 <a href="#comparison" class="hover:text-black transition">Сравнение систем</a>
+                <a href="./blog.html" class="hover:text-black transition">Центр комплаенса РК</a>
                 <a href="./docs/index.html" class="hover:text-[#0070F3] transition font-semibold">Документация API</a>
-                <a href="./blog.html" class="hover:text-black transition">Ресурсный центр комплаенса РК</a>
             </nav>
             <div>
                 <a href="#pilot" class="bg-[#0070F3] hover:bg-[#0060DF] text-white text-xs font-semibold px-4 py-2.5 rounded-md transition tracking-wide v-shadow">
@@ -157,7 +157,7 @@
             <div id="tabContent-retail" class="tab-pane space-y-2 hidden">
                 <h3 class="text-lg font-bold text-black flex items-center gap-2">Безопасный ИИ-суппорт для E-commerce</h3>
                 <p class="text-[#1E293B] text-sm leading-relaxed">
-                    Надежная изоляция баз данных CRM, историй покупок, адресов доставки и ПДн клиентов. Позволяет использовать передовые когнические возможности внешних моделей для автоматизации работы службы поддержки и чат-ботов, полностью защищая бренд от репутационных кризисов и штрафов регулятора.
+                    Надежная изоляция баз данных CRM, историй покупок, адресов доставки и ПДн клиентов. Позволяет использовать передовые когнитивные возможности внешних моделей для автоматизации работы службы поддержки и чат-ботов, полностью защищая бренд от репутационных кризисов и штрафов регулятора.
                 </p>
             </div>
         </div>
@@ -293,32 +293,33 @@
                 Оставьте заявку на бесплатный боевой пилот. Наш инженер развернет Docker-контейнер шлюза в вашем тестовом контуре, подключит локальные логи и продемонстрирует маскирование данных в реальном времени. Интеграция занимает до 2 часов и не требует изменения кода ваших внутренних систем.
             </p>
         </div>
-        <form onsubmit="event.preventDefault(); document.getElementById('pilotSuccess').classList.remove('hidden');" class="space-y-3 bg-white border border-neutral-200 rounded-xl p-6 shadow-sm v-shadow">
+        <form id="pilotForm" onsubmit="sendPilotToTelegram(event)" class="space-y-3 bg-white border border-neutral-200 rounded-xl p-6 shadow-sm v-shadow">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                     <label class="block text-[10px] font-mono font-bold text-[#64748B] uppercase mb-1">Корпоративный Email:</label>
-                    <input type="email" required placeholder="name@company.com" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
+                    <input type="email" id="formEmail" required placeholder="name@company.com" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
                 </div>
                 <div>
                     <label class="block text-[10px] font-mono font-bold text-[#64748B] uppercase mb-1">Номер телефона:</label>
-                    <input type="tel" required placeholder="+7 (707) 123-4567" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
+                    <input type="tel" id="formPhone" required placeholder="+7 (707) 123-4567" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
                 </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                     <label class="block text-[10px] font-mono font-bold text-[#64748B] uppercase mb-1">Ваша должность:</label>
-                    <input type="text" required placeholder="CISO / CIO / Архитектор" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
+                    <input type="text" id="formRole" required placeholder="CISO / CIO / Архитектор" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
                 </div>
                 <div>
                     <label class="block text-[10px] font-mono font-bold text-[#64748B] uppercase mb-1">Название компании:</label>
-                    <input type="text" required placeholder="АО / ТОО" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
+                    <input type="text" id="formCompany" required placeholder="АО / ТОО" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
                 </div>
             </div>
-            <button type="submit" class="w-full bg-[#0070F3] hover:bg-[#0060DF] text-white font-bold text-xs py-3 rounded-md transition uppercase tracking-wider v-shadow thumb-element mt-2">Запросить пилот</button>
+            <button type="submit" id="submitBtn" class="w-full bg-[#0070F3] hover:bg-[#0060DF] text-white font-bold text-xs py-3 rounded-md transition uppercase tracking-wider v-shadow thumb-element mt-2">Запросить пилот</button>
             <p class="text-[10px] text-[#94A3B8] font-sans leading-normal border-t border-neutral-100 pt-3 mt-2">
                 * Конфиденциальность гарантирована: мы бережно относимся ко всей информации, которую вы нам передаете, строго соблюдаем банковскую и коммерческую тайну и никогда не передаем данные третьим лицам. Перед развертыванием пилота подписывается двустороннее NDA.
             </p>
             <div id="pilotSuccess" class="hidden text-center text-xs font-mono font-bold text-emerald-600 py-2">Заявка зарегистрирована. Наш инженер свяжется с вами для согласования NDA.</div>
+            <div id="pilotError" class="hidden text-center text-xs font-mono font-bold text-red-600 py-2">Ошибка сети. Пожалуйста, проверьте настройки конфигурации бота.</div>
         </form>
     </section>
 
@@ -447,6 +448,59 @@
             });
             document.getElementById(`tabContent-${tId}`).classList.remove('hidden');
             document.getElementById(`tabBtn-${tId}`).className = "tab-btn px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider rounded-md border bg-black text-white border-black thumb-element transition";
+        }
+
+        // АСИНХРОННАЯ ИНТЕГРАЦИЯ TELEGRAM-БОТА С ХОСТИНГА GITHUB PAGES
+        function sendPilotToTelegram(event) {
+            event.preventDefault();
+            
+            // Замени эти константы на свои реальные ключи доступа
+            const botToken = "ТВОЙ_API_ТОКЕН_БОТА";
+            const chatId = "ТВОЙ_CHAT_ID_ИЛИ_КАНАЛА";
+
+            const email = document.getElementById('formEmail').value;
+            const phone = document.getElementById('formPhone').value;
+            const role = document.getElementById('formRole').value;
+            const company = document.getElementById('formCompany').value;
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Текстовый шаблон сообщения для Telegram
+            const textMessage = `🔔 Заявка на пилот Braint.ai\n\n` +
+                                `• Компания: ${company}\n` +
+                                `• Должность: ${role}\n` +
+                                `• Email: ${email}\n` +
+                                `• Телефон: ${phone}`;
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Отправка...";
+
+            // Нативный вызов Telegram Bot API
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: textMessage,
+                    parse_mode: "HTML"
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('pilotSuccess').classList.remove('hidden');
+                    document.getElementById('pilotError').classList.add('hidden');
+                    document.getElementById('pilotForm').reset();
+                } else {
+                    throw new Error("Telegram API Error");
+                }
+            })
+            .catch(error => {
+                document.getElementById('pilotError').classList.remove('hidden');
+                document.getElementById('pilotSuccess').classList.add('hidden');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Запросить пилот";
+            });
         }
     </script>
 </body>
