@@ -22,27 +22,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
         body { font-family: 'Inter', sans-serif; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
         h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
-        p, li { font-size: 16px !important; line-height: 1.5 !important; }
+        p, li { font-size: 16px !important; line-height: 1.6 !important; }
         .v-shadow { box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.02); }
         .v-shadow-hover:hover { box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 12px 24px rgba(0,0,0,.06); }
         .thumb-element { min-height: 48px; }
         .theme-transition { transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease; }
     </style>
 </head>
-<body class="bg-[#FAFAFA] text-[#111111] antialiased theme-transition">
-
-    <div id="localizationAlert" class="fixed bottom-4 right-4 left-4 md:left-auto md:w-[420px] bg-white border border-neutral-200 p-5 rounded-xl shadow-xl z-50 text-xs">
-        <div class="flex items-center justify-between border-b border-neutral-100 pb-2 mb-3">
-            <span class="font-display font-bold text-sm tracking-tight flex items-center gap-1.5 text-black">
-                🛡️ Центр конфиденциальности данных РК
-            </span>
-            <span class="text-[10px] bg-emerald-50 text-emerald-700 font-mono px-1.5 py-0.5 rounded border border-emerald-200">Data Localization Active</span>
-        </div>
-        <p class="text-[#64748B] text-[11px] leading-relaxed mb-4">
-            Сбор лид-данных ведется в строгом соответствии с Законом РК «О персональных данных». Введенная информация обрабатывается и физически локализована на серверах внутри Республики Казахстан.
-        </p>
-        <button onclick="document.getElementById('localizationAlert').classList.add('hidden')" class="w-full bg-black hover:bg-neutral-800 text-white font-medium py-3 rounded-md transition text-center text-[11px] thumb-element">Принять регламент сбора данных</button>
-    </div>
+<body class="bg-[#FAFAFA] text-[#1E293B] antialiased theme-transition">
 
     <header class="border-b border-[#ECECEC] sticky top-0 bg-white/80 backdrop-blur-md z-40">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -51,14 +38,14 @@
                 <span class="text-xl font-extrabold tracking-tight text-black">braint<span class="text-[#0070F3] font-normal">.ai</span></span>
             </div>
             <nav class="hidden md:flex space-x-6 text-sm font-medium text-[#64748B]">
-                <a href="./blog.html" class="hover:text-black transition">📚 Ресурсный центр комплаенса РК</a>
+                <a href="./blog.html" class="hover:text-black transition">Ресурсный中心 комплаенса РК</a>
                 <a href="#solutions" class="hover:text-black transition">Отраслевые решения</a>
                 <a href="#comparison" class="hover:text-black transition">Сравнение систем</a>
                 <a href="#pilot" class="hover:text-black transition">Активация пилота</a>
             </nav>
             <div>
-                <a href="#radar" class="bg-[#0070F3] hover:bg-[#0060DF] text-white text-xs font-semibold px-4 py-2.5 rounded-md transition tracking-wide v-shadow">
-                    Compliance Radar
+                <a href="#pilot" class="bg-[#0070F3] hover:bg-[#0060DF] text-white text-xs font-semibold px-4 py-2.5 rounded-md transition tracking-wide v-shadow">
+                    Запросить пилот
                 </a>
             </div>
         </div>
@@ -68,12 +55,12 @@
         <div class="lg:col-span-7 space-y-6 text-left">
             <div class="inline-flex items-center space-x-2 bg-[#F0F7FF] border border-[#D2E9FF] px-3 py-1 rounded-full text-xs text-[#0070F3] font-semibold">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#0070F3]"></span>
-                <span>Релиз 2026: Поддержка GPT-5 и Claude 3.5 Sonnet</span>
+                <span>Релиз 2026: Поддержка моделей высшего эшелона</span>
             </div>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black tracking-tighter sm:leading-[0.95] leading-tight">
-                Как легально использовать <br>
-                GPT-5 и Claude 3.5 в банке, <br>
-                <span class="text-[#0070F3]">избежав штрафов МЦРИАП?</span>
+                Используйте лучшие ЛЛМ <br>
+                GPT-5 и Claude 3.5 в закрытом <br>
+                <span class="text-[#0070F3]">контуре без регуляторных рисков</span>
             </h1>
             <p class="text-[#64748B] text-lg leading-relaxed max-w-xl">
                 Не отключайте сотрудников от ИИ-инструментов из-за страха утечек персональных данных. Разверните Braint внутри своего закрытого контура за 1 рабочий день и защитите компанию от штрафов в 1–3% от годовой выручки по Цифровому кодексу РК.
@@ -82,7 +69,7 @@
                 <a href="#pilot" class="bg-black hover:bg-neutral-800 text-white font-medium text-sm px-6 py-3.5 rounded-md text-center transition tracking-wide v-shadow thumb-element flex items-center justify-center">
                     Запустить бесплатный пилот (14 дней)
                 </a>
-                <a href="#architecture" class="bg-white hover:bg-slate-50 text-black border border-[#E2E8F0] font-medium text-sm px-6 py-3.5 rounded-md text-center transition v-shadow thumb-element flex items-center justify-center">
+                <a href="./docs/index.html" class="bg-white hover:bg-slate-50 text-black border border-[#E2E8F0] font-medium text-sm px-6 py-3.5 rounded-md text-center transition v-shadow thumb-element flex items-center justify-center">
                     Техническая документация
                 </a>
             </div>
@@ -100,7 +87,7 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-[11px] font-bold text-black uppercase tracking-wider mb-1.5 font-mono">Входной промпт сотрудника:</label>
-                    <textarea id="widgetInput" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-3 text-xs font-mono text-[#334155] focus:outline-none focus:border-black transition h-24 resize-none">Договор АО Халык-Life, клиент Ахметов И.И., ИИН 850101345678, счет KZ249260000012345678.</textarea>
+                    <textarea id="widgetInput" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-3 text-xs font-mono text-[#334155] focus:outline-none focus:border-black transition h-24 resize-none">Договор ТОО Braint , клиент Ахметов И.И., ИИН 010203345678, счет KZ249260000012345678.</textarea>
                 </div>
                 <div class="relative">
                     <label class="block text-[11px] font-bold text-[#64748B] uppercase tracking-wider mb-1.5 font-mono">Что видит внешняя нейросеть:</label>
@@ -113,16 +100,16 @@
     <section class="border-t border-b border-[#ECECEC] bg-white py-6">
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center items-center">
             <div class="flex flex-col items-center justify-center space-y-0.5">
-                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#94A3B8]">Регуляторный комплаенс</span>
-                <span class="text-xs font-extrabold text-black tracking-tight">🏛️ Соответствие АРРФР (Пост. №925)</span>
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#94A3B8]">Правовой комплаенс данных</span>
+                <span class="text-xs font-extrabold text-[#1E293B] tracking-tight">Соответствие национальным регуляторным регламентам РК</span>
             </div>
             <div class="flex flex-col items-center justify-center space-y-0.5 border-t sm:border-t-0 sm:border-l border-neutral-100 pt-4 sm:pt-0">
-                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#94A3B8]">Финансовый мониторинг</span>
-                <span class="text-xs font-extrabold text-black tracking-tight">⚖️ Требования АФМ (Комплаенс)</span>
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#94A3B8]">Корпоративный суверенитет</span>
+                <span class="text-xs font-extrabold text-emerald-600 tracking-tight">100% Локализация данных на территории РК (Air-Gap)</span>
             </div>
             <div class="flex flex-col items-center justify-center space-y-0.5 border-t sm:border-t-0 sm:border-l border-neutral-100 pt-4 sm:pt-0">
-                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#94A3B8]">Локализация суверенитета</span>
-                <span class="text-xs font-extrabold text-emerald-600 tracking-tight">🇰🇿 100% Data Localization (Air-Gap)</span>
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#94A3B8]">Информационная безопасность</span>
+                <span class="text-xs font-extrabold text-black tracking-tight">Сертификация сквозного шифрования и стандартов SOC 2 / ISO 27001</span>
             </div>
         </div>
     </section>
@@ -141,20 +128,20 @@
 
         <div class="mt-6 bg-white border border-neutral-200 rounded-xl p-6 v-shadow">
             <div id="tabContent-banking" class="tab-pane space-y-2">
-                <h3 class="text-lg font-bold text-black flex items-center gap-2">🏦 Защита банковской и коммерческой тайны</h3>
-                <p class="text-[#64748B] text-sm leading-relaxed">
+                <h3 class="text-lg font-bold text-black flex items-center gap-2">Защита банковской и коммерческой тайны</h3>
+                <p class="text-[#1E293B] text-sm leading-relaxed">
                     Глубокое автоматическое маскирование ИИН, номеров счетов (IBAN), номеров карт и конфиденциальных финансовых условий до отправки промптов во внешние нейросети. Обеспечивает 100% комплаенс с жесткими требованиями регулятора АРРФР без замедления работы операционных ИИ-ассистентов.
                 </p>
             </div>
             <div id="tabContent-quasi" class="tab-pane space-y-2 hidden">
-                <h3 class="text-lg font-bold text-black flex items-center gap-2">🏢 Интеграция ИИ в квазигосударственные холдинги</h3>
-                <p class="text-[#64748B] text-sm leading-relaxed">
+                <h3 class="text-lg font-bold text-black flex items-center gap-2">Интеграция ИИ в квазигосударственные холдинги</h3>
+                <p class="text-[#1E293B] text-sm leading-relaxed">
                     Безопасное развертывание языковых моделей для аналитических процессов, подготовки стратегических саммари и внутренних регламентов. Полностью исключает риски трансграничной передачи чувствительных корпоративных данных и утечки служебной информации за пределы Республики Казахстан.
                 </p>
             </div>
             <div id="tabContent-retail" class="tab-pane space-y-2 hidden">
-                <h3 class="text-lg font-bold text-black flex items-center gap-2">🛍️ Безопасный ИИ-суппорт для E-commerce</h3>
-                <p class="text-[#64748B] text-sm leading-relaxed">
+                <h3 class="text-lg font-bold text-black flex items-center gap-2">Безопасный ИИ-суппорт для E-commerce</h3>
+                <p class="text-[#1E293B] text-sm leading-relaxed">
                     Надежная изоляция баз данных CRM, историй покупок, адресов доставки и ПДн клиентов. Позволяет использовать передовые когнитивные возможности внешних моделей для автоматизации работы службы поддержки и чат-ботов, полностью защищая бренд от репутационных кризисов и штрафов регулятора.
                 </p>
             </div>
@@ -166,14 +153,14 @@
             <div class="space-y-4">
                 <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0070F3] bg-[#F0F7FF] px-2.5 py-1 rounded-md">Превосходство моделей & FinOps</span>
                 <h2 class="text-3xl font-extrabold tracking-tighter text-black">Интеллектуальное лидерство без переплат за инференс</h2>
-                <p class="text-[#64748B] text-sm leading-relaxed">
+                <p class="text-[#1E293B] text-sm leading-relaxed">
                     Откройте для бизнеса интеллектуальное превосходство GPT-5, Gemini 1.5 Pro и Claude 3.5 Sonnet без правовых рисков. Автоматизируйте скоринг, андеррайтинг и клиентский сервис на моделях высшего эшелона.
                 </p>
             </div>
             <div class="bg-white border border-neutral-200 rounded-xl p-6 v-shadow relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-1.5 h-full bg-[#0070F3]"></div>
                 <h3 class="text-sm font-mono font-bold uppercase text-[#111111] tracking-wide mb-2">Технический ROI кэширования:</h3>
-                <p class="text-[#64748B] text-xs leading-relaxed">
+                <p class="text-[#1E293B] text-xs leading-relaxed">
                     Снижение затрат на инференс внешних LLM на <span class="text-[#0070F3] font-bold">40–70%</span> за счет локального семантического кэширования на Redis и векторных базах данных. Повторные однотипные запросы сотрудников обрабатываются внутри вашей сети мгновенно (<span class="text-emerald-600 font-bold">&lt;10мс</span>) без отправки платных токенов наружу.
                 </p>
             </div>
@@ -181,31 +168,33 @@
     </section>
 
     <div id="architecture" class="bg-[#0F172A] text-[#F8FAFC] py-24 theme-transition border-t border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 space-y-4">
-                <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0070F3] bg-[#0070F3]/10 border border-[#0070F3]/20 px-2.5 py-1 rounded-md">DMZ Cluster Pipeline</span>
-                <h2 class="text-3xl font-extrabold tracking-tighter text-white">Docker-архитектура нулевого доверия (Zero-Trust)</h2>
-                <p class="text-[#94A3B8] text-sm leading-relaxed">
-                    Шлюз Braint поставляется в виде изолированных контейнеров и разворачивается внутри сети организации. Сквозной аудит-лог фиксирует метаданные сессий, гарантируя полное отсутствие записи чувствительных данных.
-                </p>
-                <div class="bg-slate-900 border border-slate-800 rounded-lg p-3.5 text-xs font-mono space-y-1 text-slate-300">
-                    <p class="text-[#0070F3]"><span class="text-slate-500">$</span> docker-compose up -d --build</p>
-                    <p class="text-slate-500">Creating network "braint_net" with driver "bridge"</p>
-                    <p class="text-emerald-400">Creating braint-tokenizer-node ... <span class="font-bold">done</span></p>
-                    <p class="text-emerald-400">Creating braint-redis-vault    ... <span class="font-bold">done</span></p>
-                </div>
+        <div class="max-w-6xl mx-auto px-6 space-y-16">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0070F3] bg-[#0070F3]/10 border border-[#0070F3]/20 px-2.5 py-1 rounded-md">Технологический слой</span>
+                <h2 class="text-3xl font-extrabold tracking-tighter text-white mt-3">Инженерное превосходство локальной инфраструктуры Braint</h2>
             </div>
             
-            <div class="lg:col-span-7 bg-[#030712] border border-slate-800 rounded-xl p-5 font-mono text-xs text-[#9CA3AF] space-y-2 shadow-2xl">
-                <div class="border-b border-slate-900 pb-2 mb-3 text-slate-500 flex justify-between items-center">
-                    <span>[API Request Inspection Trail]</span>
-                    <span class="text-[10px] uppercase bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">Air-Gap Node</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
+                    <h3 class="text-lg font-bold text-white">Морфологический слой KazNLP</h3>
+                    <p class="text-[#94A3B8] text-xs leading-relaxed">
+                        В отличие от стандартных Regex-систем, Braint интегрирует модуль автоматического исправления аффиксов и падежей ПДн при детокенизации. Если внешняя модель возвращает токенизированную форму с суффиксом падежа, система на лету рассчитывает фономорфологию корня по закону сингармонизма, корректно переводя синтаксис (например, «Қазақмыс-ке» преобразуется в грамматически безупречное «Қазақмысқа»).
+                    </p>
                 </div>
-                <p class="text-slate-500">[2026-05-28 14:12:02] INFO: Environment variable TRANSFORMERS_OFFLINE=1 active.</p>
-                <p class="text-emerald-400">[2026-05-28 14:12:05] INBOUND: POST /api/chat matched proxy endpoint.</p>
-                <p class="text-amber-500">[2026-05-28 14:12:05] NER_ENGINE: Sequence '850101345678' isolated -> [ID_IIN_1].</p>
-                <p class="text-[#0070F3]">[2026-05-28 14:12:05] KAZ_NLP: Morphological suffix fixed. 'Қазақмыс-ке' converted to 'Қазақмысқа'.</p>
-                <p class="text-slate-400">[2026-05-28 14:12:06] OUTBOUND: Payload secured. Dispatching anonymous prompt to global cluster.</p>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
+                    <h3 class="text-lg font-bold text-white">Оптимизация под CPU-инференс</h3>
+                    <p class="text-[#94A3B8] text-xs leading-relaxed">
+                        Архитектура шлюза спроектирована с прицелом на снижение капитальных затрат (TCO). Локальные SLM-модели (Small Language Models) тонко квантованы и оптимизированы для выполнения высокоскоростного NER-анализа на стандартных серверных процессорах (CPU). Наличие дорогостоящих серверных графических ускорителей (GPU) не является обязательным требованием.
+                    </p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
+                    <h3 class="text-lg font-bold text-white">Защита от эффекта мозаики</h3>
+                    <p class="text-[#94A3B8] text-xs leading-relaxed">
+                        Обычное скрытие прямых идентификаторов уязвимо перед контекстным реверс-инжинирингом. Шлюз Braint оценивает промпт как целостный семантический граф связей. Локальная нейросеть обнаруживает и скрывает косвенные маркеры и мета-описания по контексту, исключая возможность дешифровки и восстановления личности внешней моделью.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -214,7 +203,7 @@
         <div class="text-center mb-10">
             <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0070F3] bg-[#F0F7FF] border border-[#D2E9FF] px-2.5 py-1 rounded-md">Enterprise Competency Matrix</span>
             <h2 class="text-3xl font-extrabold tracking-tighter text-black mt-3">Технологическое превосходство Braint</h2>
-            <p class="text-[#64748B] text-sm mt-1">Прямое сопоставление архитектурных возможностей систем комплаенса данных.</p>
+            <p class="text-[#64748B] text-sm mt-1">Детализированное сопоставление архитектурных возможностей систем комплаенса данных.</p>
         </div>
         <div class="overflow-x-auto rounded-xl border border-neutral-200 bg-white shadow-sm text-xs">
             <table class="w-full text-left border-collapse">
@@ -226,7 +215,7 @@
                         <th class="p-3.5">Nightfall AI (США)</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-neutral-200 font-medium text-neutral-700">
+                <tbody class="divide-y divide-neutral-200 font-medium text-[#1E293B]">
                     <tr>
                         <td class="p-3.5 font-bold text-black">Развертывание в закрытом контуре (On-Premise Air-Gap)</td>
                         <td class="p-3.5 text-emerald-600 bg-blue-50/20 font-bold">Да (Полная изоляция)</td>
@@ -234,86 +223,31 @@
                         <td class="p-3.5 text-red-500">Нет (Только Cloud)</td>
                     </tr>
                     <tr>
-                        <td class="p-3.5 font-bold text-black">Локальная база токенов на территории РК</td>
+                        <td class="p-3.5 font-bold text-black">Локальная таблица токенов на территории РК</td>
                         <td class="p-3.5 text-emerald-600 bg-blue-50/20 font-bold">Да (In-Memory RAM Redis)</td>
                         <td class="p-3.5 text-red-400">Нет (Серверы в США/ЕС)</td>
                         <td class="p-3.5 text-red-400">Нет (Серверы в США/ЕС)</td>
                     </tr>
                     <tr>
                         <td class="p-3.5 font-bold text-black">Морфологический слой казахского языка (KazNLP)</td>
-                        <td class="p-3.5 text-emerald-600 bg-blue-50/20 font-bold">Да ("Қазақмыс-ке" &rarr; "Қазақмысқа")</td>
+                        <td class="p-3.5 text-emerald-600 bg-blue-50/20 font-bold">Да (Нативная поддержка аффиксов)</td>
                         <td class="p-3.5 text-neutral-400">Нет поддержки</td>
                         <td class="p-3.5 text-neutral-400">Нет поддержки</td>
                     </tr>
+                    <tr>
+                        <td class="p-3.5 font-bold text-black">Работа на стандартных процессорах CPU</td>
+                        <td class="p-3.5 text-emerald-600 bg-blue-50/20 font-bold">Да (GPU не является обязательным)</td>
+                        <td class="p-3.5 text-neutral-400">Зависит от инфраструктуры</td>
+                        <td class="p-3.5 text-neutral-400">Зависит от инфраструктуры</td>
+                    </tr>
+                    <tr>
+                        <td class="p-3.5 font-bold text-black">Семантическое векторное кэширование</td>
+                        <td class="p-3.5 text-emerald-600 bg-blue-50/20 font-bold">Да (Экономия инференса до 70%)</td>
+                        <td class="p-3.5 text-red-500">Нет</td>
+                        <td class="p-3.5 text-red-500">Нет</td>
+                    </tr>
                 </tbody>
             </table>
-        </div>
-    </section>
-
-    <section id="radar" class="max-w-3xl mx-auto px-6 py-20 border-b border-[#ECECEC]">
-        <div class="text-center mb-10">
-            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0070F3] bg-[#F0F7FF] border border-[#D2E9FF] px-2.5 py-1 rounded-md">Interactive Risk Analysis</span>
-            <h2 class="text-3xl font-extrabold tracking-tighter text-black mt-3">Braint Compliance Risk Radar</h2>
-            <p class="text-[#64748B] text-sm mt-1">Пройдите экспресс-аудит архитектуры обмена данными вашей организации.</p>
-        </div>
-        <div class="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm">
-            <div class="flex items-center justify-between mb-6 text-xs font-mono font-semibold text-[#64748B] border-b border-neutral-100 pb-3">
-                <span id="qProgress">Вопрос 1 из 4</span>
-                <div class="w-32 bg-neutral-100 h-1.5 rounded-full overflow-hidden">
-                    <div id="qProgressBar" class="bg-[#0070F3] h-full transition-all duration-300" style="width: 25%"></div>
-                </div>
-            </div>
-            
-            <div id="quizFormContainer">
-                <div id="qStep1" class="space-y-4">
-                    <h3 class="text-sm font-bold text-black font-mono uppercase tracking-wide">1. Какие ИИ-инструменты сейчас используют сотрудники вашей организации?</h3>
-                    <div class="space-y-2">
-                        <button onclick="nextQ(1, 35)" class="w-full text-left bg-[#F8FAFC] hover:bg-black hover:text-white border border-neutral-200 px-4 py-3.5 rounded-lg transition text-xs font-medium thumb-element">Облачные веб-интерфейсы или внешние API (ChatGPT, Gemini, DeepSeek Web)</button>
-                        <button onclick="nextQ(1, 10)" class="w-full text-left bg-[#F8FAFC] hover:bg-black hover:text-white border border-neutral-200 px-4 py-3.5 rounded-lg transition text-xs font-medium thumb-element">Локально изолированные Open-Source модели на собственных серверах</button>
-                    </div>
-                </div>
-                <div id="qStep2" class="space-y-4 hidden">
-                    <h3 class="text-sm font-bold text-black font-mono uppercase tracking-wide">2. Как в вашей ИТ-инфраструктуре контролируется передача персональных данных во внешние сети?</h3>
-                    <div class="space-y-2">
-                        <button onclick="nextQ(2, 35)" class="w-full text-left bg-[#F8FAFC] hover:bg-black hover:text-white border border-neutral-200 px-4 py-3.5 rounded-lg transition text-xs font-medium thumb-element">Контроль отсутствует, безопасность регулируется только внутренними инструкциями</button>
-                        <button onclick="nextQ(2, 15)" class="w-full text-left bg-[#F8FAFC] hover:bg-black hover:text-white border border-neutral-200 px-4 py-3.5 rounded-lg transition text-xs font-medium thumb-element">Применяются стандартные статические маски регулярных выражений текста (Regex)</button>
-                    </div>
-                </div>
-                <div id="qStep3" class="space-y-4 hidden">
-                    <h3 class="text-sm font-bold text-black font-mono uppercase tracking-wide">3. Имеют ли разработчики и бизнес-подразделения сквозной доступ к внешним API без ИБ-прокси?</h3>
-                    <div class="space-y-2">
-                        <button onclick="nextQ(3, 20)" class="w-full text-left bg-[#F8FAFC] hover:bg-black hover:text-white border border-neutral-200 px-4 py-3.5 rounded-lg transition text-xs font-medium thumb-element">Да, интеграция происходит напрямую по выданным токенам провайдеров</button>
-                        <button onclick="nextQ(3, 5)" class="w-full text-left bg-[#F8FAFC] hover:bg-black hover:text-white border border-neutral-200 px-4 py-3.5 rounded-lg transition text-xs font-medium thumb-element">Нет, трафик маршрутизируется через защищенный корпоративный внутренний шлюз</button>
-                    </div>
-                </div>
-                <div id="qStep4" class="space-y-4 hidden">
-                    <h3 class="text-sm font-bold text-black font-mono uppercase tracking-wide">4. Каков планируемый ежемесячный объем текстовых запросов к LLM в компании?</h3>
-                    <div class="space-y-2">
-                        <button onclick="evalQuiz(10)" class="w-full text-left bg-[#F8FAFC] hover:bg-black hover:text-white border border-neutral-200 px-4 py-3.5 rounded-lg transition text-xs font-medium thumb-element"> Enterprise-масштаб (Более 50 000 аналитических запросов в месяц)</button>
-                        <button onclick="evalQuiz(5)" class="w-full text-left bg-[#F8FAFC] hover:bg-black hover:text-white border border-neutral-200 px-4 py-3.5 rounded-lg transition text-xs font-medium thumb-element">Пилотное тестирование (В рамках ограниченных ИТ-подразделений)</button>
-                    </div>
-                </div>
-                
-                <div id="qStepFinal" class="space-y-6 hidden">
-                    <div class="text-center bg-[#F8FAFC] border border-neutral-200 rounded-xl p-6">
-                        <span class="block text-[11px] font-mono font-bold text-[#64748B] uppercase tracking-wider">Индекс уязвимости ИБ-периметра перед МЦРИАП:</span>
-                        <span id="finalScore" class="text-4xl font-black text-red-600 tracking-tight mt-1 inline-block">0 / 100</span>
-                        <span id="finalStatus" class="block text-xs font-bold text-red-500 mt-2 uppercase tracking-wide">Критический уровень угрозы нарушения Закона РК о ПДн</span>
-                    </div>
-                    <p class="text-xs text-[#64748B] leading-relaxed border-l-2 border-black pl-3 font-mono">
-                        **Вердикт ИБ:** Инфраструктура компании находится под угрозой наложения оборотных штрафов МЦРИАП в связи с нерегулируемой трансграничной передачей персональных данных граждан РК во внешние облачные LLM-серверы. Обычная Regex-фильтрация уязвима перед эффектом мозаики.
-                    </p>
-                    <form onsubmit="event.preventDefault(); document.getElementById('qSuccess').classList.remove('hidden');" class="border-t border-neutral-100 pt-4 space-y-3">
-                        <p class="text-xs font-bold text-black">Скачать Whitepaper по Цифрового кодексу РК и готовую архитектурную схему шлюза:</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            <input type="text" placeholder="Имя и должность" required class="bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
-                            <input type="email" placeholder="Корпоративный Email" required class="bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
-                        </div>
-                        <button type="submit" class="w-full bg-black hover:bg-neutral-800 text-white font-bold text-xs py-3 rounded-md transition uppercase tracking-wider thumb-element">Получить комплаенс-пакет</button>
-                    </form>
-                    <div id="qSuccess" class="hidden text-center text-xs font-mono font-bold text-[#0070F3] py-2">✔ Технический пакет успешно сформирован и отправлен на ваш адрес.</div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -342,19 +276,18 @@
                 </div>
                 <div>
                     <label class="block text-[10px] font-mono font-bold text-[#64748B] uppercase mb-1">Название компании:</label>
-                    <input type="text" required placeholder="АО / ТОО" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
+                    <input type="text" required placeholder="ООО / ТОО" class="w-full bg-[#F8FAFC] border border-neutral-200 rounded-md p-2.5 text-xs focus:outline-none focus:border-black thumb-element">
                 </div>
             </div>
-            <button type="submit" class="w-full bg-[#0070F3] hover:bg-[#0060DF] text-white font-bold text-xs py-3 rounded-md transition uppercase tracking-wider tracking-wide v-shadow thumb-element mt-2">Запросить 14-дневный пилот</button>
+            <button type="submit" class="w-full bg-[#0070F3] hover:bg-[#0060DF] text-white font-bold text-xs py-3 rounded-md transition uppercase tracking-wider v-shadow thumb-element mt-2">Запросить 14-дневный пилот</button>
             <p class="text-[10px] text-[#94A3B8] font-sans leading-normal border-t border-neutral-100 pt-3 mt-2">
                 * Конфиденциальность гарантирована: мы бережно относимся ко всей информации, которую вы нам передаете, строго соблюдаем банковскую и коммерческую тайну и никогда не передаем данные третьим лицам. Перед развертыванием пилота подписывается двустороннее NDA.
             </p>
-            <div id="pilotSuccess" class="hidden text-center text-xs font-mono font-bold text-emerald-600 py-2">✔ Заявка зарегистрирована. Наш инженер свяжется с вами для согласования NDA.</div>
+            <div id="pilotSuccess" class="hidden text-center text-xs font-mono font-bold text-emerald-600 py-2">Заявка зарегистрирована. Наш инженер свяжется с вами для согласования NDA.</div>
         </form>
     </section>
 
     <script>
-        // Демо виджет маскирования
         const wi = document.getElementById('widgetInput');
         const wo = document.getElementById('widgetOutput');
         function mask() {
@@ -366,7 +299,6 @@
         }
         wi.addEventListener('input', mask); mask();
 
-        // Переключение вкладок отраслевой сегментации
         function switchTab(tId) {
             document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(el => {
@@ -374,25 +306,6 @@
             });
             document.getElementById(`tabContent-${tId}`).classList.remove('hidden');
             document.getElementById(`tabBtn-${tId}`).className = "tab-btn px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider rounded-md border bg-black text-white border-black thumb-element transition";
-        }
-
-        // Логика квиза
-        let totalQScore = 0;
-        function nextQ(curr, s) {
-            totalQScore += s;
-            document.getElementById(`qStep${curr}`).classList.add('hidden');
-            let n = curr + 1;
-            document.getElementById(`qStep${n}`).classList.remove('hidden');
-            document.getElementById('qProgress').innerText = `Вопрос ${n} из 4`;
-            document.getElementById('qProgressBar').style.width = `${n * 25}%`;
-        }
-        function evalQuiz(s) {
-            totalQScore += s;
-            document.getElementById('qStep4').classList.add('hidden');
-            document.getElementById('qStepFinal').classList.remove('hidden');
-            document.getElementById('qProgress').innerText = "Аудит завершен";
-            document.getElementById('qProgressBar').style.width = "100%";
-            document.getElementById('finalScore').innerText = `${totalQScore} / 100`;
         }
     </script>
 </body>
