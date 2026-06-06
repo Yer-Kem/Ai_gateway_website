@@ -1,7 +1,7 @@
 const https = require('https');
 
 module.exports = async (req, res) => {
-    // Включаем CORS заголовки
+    // CORS Настройки
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -15,34 +15,47 @@ module.exports = async (req, res) => {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
+    // Собираем сырые данные из потока (Stream), так как req.body на кастомном домене может быть пустым
+    let bodyBuffers = [];
+    for await (const chunk of req) {
+        bodyBuffers.push(chunk);
+    }
+    const rawBody = Buffer.concat(bodyBuffers).toString();
+
     try {
-        const { email, phone, role, company } = req.body;
+        // Парсим JSON вручную, чтобы избежать undefined crash
+        let parsedData = {};
+        if (rawBody) {
+            parsedData = JSON.parse(rawBody);
+        } else if (req.body) {
+            parsedData = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+        }
+
+        const { email, phone, role, company } = parsedData;
 
         const botToken = process.env.TELEGRAM_BOT_TOKEN;
         const chatId = process.env.TELEGRAM_CHAT_ID;
 
-        // Если ключи не настроены в Vercel
+        // Если ключи не настроены — мягко прерываем
         if (!botToken || !chatId) {
-            return res.status(200).json({ success: true, mode: "sandbox_mock" });
+            return res.status(200).json({ success: true, warning: "Env variables missing" });
         }
 
         const textMessage = `🔔 Заявка на пилот Braint.ai\n\n` +
-                            `• Компания: ${company}\n` +
-                            `• Должность: ${role}\n` +
-                            `• Email: ${email}\n` +
-                            `• Телефон: ${phone}`;
+                            `• Компания: ${company || 'Не указано'}\n` +
+                            `• Должность: ${role || 'Не указано'}\n` +
+                            `• Email: ${email || 'Не указано'}\n` +
+                            `• Телефон: ${phone || 'Не указано'}`;
 
-        // Формируем JSON-пакет для Telegram
         const postData = JSON.stringify({
             chat_id: chatId,
             text: textMessage,
             parse_mode: "HTML"
         });
 
-        // Нативные опции запроса к Telegram API без fetch
         const options = {
             hostname: 'api.telegram.org',
-            port: 4443, // Безопасный SSL порт Telegram
+            port: 443,
             path: `/bot${botToken}/sendMessage`,
             method: 'POST',
             headers: {
@@ -51,7 +64,7 @@ module.exports = async (req, res) => {
             }
         };
 
-        // Выполняем асинхронный нативный запрос
+        // Отправка в Telegram через нативный поток
         const tgRequest = new Promise((resolve, reject) => {
             const request = https.request(options, (response) => {
                 let data = '';
@@ -60,11 +73,10 @@ module.exports = async (req, res) => {
                     if (response.statusCode === 200) {
                         resolve(true);
                     } else {
-                        reject(new Error(`Telegram Status: ${response.statusCode} - ${data}`));
+                        reject(new Error(`Telegram HTTP Error: ${response.statusCode}`));
                     }
                 });
             });
-
             request.on('error', (err) => { reject(err); });
             request.write(postData);
             request.end();
@@ -74,9 +86,8 @@ module.exports = async (req, res) => {
         return res.status(200).json({ success: true });
 
     } catch (error) {
-        console.error("Braint Engine Error Log:", error.message);
-        // Защита конверсии: если даже Telegram упадет, мы возвращаем фронтенду 200 OK,
-        // чтобы клиент ForteBank увидел окно УСПЕХА и регламент NDA, а не ошибку 500!
-        return res.status(200).json({ success: true, error_intercepted: error.message });
+        console.error("Intercepted Engine Error:", error.message);
+        // Fail-Safe: отдаем фронтенду 200 в любом случае, конверсия — главный приоритет
+        return res.status(200).json({ success: true, failover: true, log: error.message });
     }
 };
