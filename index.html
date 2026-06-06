@@ -156,7 +156,7 @@
                     <p class="text-[#475569] text-xs mt-2 leading-relaxed font-medium">Строгая локальная установка программного шлюза On-Premise непосредственно внутри периметра заказчика.</p>
                 </div>
                 <div class="p-5 bg-[#FAFAFA] border-l-4 border-purple-500 border-t border-r border-b border-[#E2E8F0] rounded-r-xl v-shadow transition hover:bg-[#F8FAFC]">
-                    <span class="block text-sm font-black text-purple-800 uppercase font-mono tracking-tight">Инфраструктурный аудит</span>
+                    <span class="block text-sm font-black text-purple-800 uppercase font-mono tracking-tight">Инфраструктурный audit</span>
                     <p class="text-[#475569] text-xs mt-2 leading-relaxed font-medium">Построение сквозного шифрования и изоляции транзакций по жестким международным стандартам SOC 2 и ISO 27001.</p>
                 </div>
             </div>
@@ -191,7 +191,7 @@
             <div id="tabContent-retail" class="tab-pane space-y-2 hidden">
                 <h3 class="text-lg font-bold text-black flex items-center gap-2">Безопасный ИИ-суппорт для E-commerce</h3>
                 <p class="text-[#1E293B] text-sm leading-relaxed">
-                    Надежная изоляция баз данных CRM, историй покупок, адресов доставки и ПДн клиентов. Позволяет использовать передовые когнитивные возможности внешних моделей для автоматизации работы службы поддержки и чат-ботов, полностью защищая бренд от репутационных кризисов и штрафов регулятора.
+                    Надежная изоляция баз данных CRM, историй покупок, адресов доставки и ПДн клиентов. Позволяет использовать передовые когнические возможности внешних моделей для автоматизации работы службы поддержки и чат-ботов, полностью защищая бренд от репутационных кризисов и штрафов регулятора.
                 </p>
             </div>
         </div>
@@ -244,7 +244,7 @@
                 <div class="bg-white border border-[#E2E8F0] rounded-xl p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center v-shadow">
                     <div class="md:col-span-4 border-b md:border-b-0 md:border-r border-neutral-200 pb-4 md:pb-0 md:pr-4">
                         <span class="text-xs font-mono text-emerald-600 block uppercase tracking-wider font-bold">Минимизация TCO инфраструктуры</span>
-                        <h3 class="text-xl font-extrabold text-black mt-1">Работа на стандартных CPU</h3>
+                        <h3 class="text-xl font-extrabold text-black mt-1">Работа на standard CPU</h3>
                     </div>
                     <div class="md:col-span-8">
                         <p class="text-[#334155] text-xs leading-relaxed font-medium">
@@ -487,54 +487,51 @@
             document.getElementById('pilotForm').reset();
         }
 
-        // БЕЗОПАСНАЯ ОТПРАВКА ЧЕРЕЗ БЭКЕНД-ПРОКСИ VERCEL SERVERLESS
+        // ОТПРАВКА С ФИКСИРОВАННЫМ ЛОКАЛЬНЫМ ПУТЕМ ДЛЯ ИСКЛЮЧЕНИЯ CORS БЛОКИРОВОК В БРАУЗЕРЕ
         function sendPilotToTelegram(event) {
-    event.preventDefault();
-    
-    const email = document.getElementById('formEmail').value;
-    const phone = document.getElementById('formPhone').value;
-    const role = document.getElementById('formRole').value;
-    const company = document.getElementById('formCompany').value;
-    const submitBtn = document.getElementById('submitBtn');
+            event.preventDefault();
+            
+            const email = document.getElementById('formEmail').value;
+            const phone = document.getElementById('formPhone').value;
+            const role = document.getElementById('formRole').value;
+            const company = document.getElementById('formCompany').value;
+            const submitBtn = document.getElementById('submitBtn');
 
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Отправка...";
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Отправка...";
 
-    // Мы жестко перенаправляем fetch на проверенный рабочий URL твоего проекта Vercel.
-    // Это полностью решает проблему маршрутизации на кастомном домене braint.solutions!
-    fetch('https://ai-gateway-website-pmbo5hy0v-yer-kems-projects.vercel.app/api/send-lead', {
-        method: "POST",
-        headers: { 
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify({
-            email: email,
-            phone: phone,
-            role: role,
-            company: company
-        })
-    })
-    .then(response => {
-        if (response.ok) {
-            // Выводим всплывающее окно успеха и NDA
-            document.getElementById('successModal').classList.remove('hidden');
-            document.getElementById('errorModal').classList.add('hidden');
-            document.getElementById('pilotForm').reset();
-        } else {
-            throw new Error("HTTP Status Error: " + response.status);
+            // Благодаря верному vercel.json, относительный путь работает без коллизий на braint.solutions
+            fetch('/api/send-lead', {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    phone: phone,
+                    role: role,
+                    company: company
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('successModal').classList.remove('hidden');
+                    document.getElementById('errorModal').classList.add('hidden');
+                    document.getElementById('pilotForm').reset();
+                } else {
+                    throw new Error("Vercel Serverless API returned error status: " + response.status);
+                }
+            })
+            .catch(error => {
+                console.error("Braint Core Network Error:", error);
+                document.getElementById('errorModal').classList.remove('hidden');
+                document.getElementById('successModal').classList.add('hidden');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Запросить пилот";
+            });
         }
-    })
-    .catch(error => {
-        console.error("Braint Core CORS/Network Error:", error);
-        document.getElementById('errorModal').classList.remove('hidden');
-        document.getElementById('successModal').classList.add('hidden');
-    })
-    .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Запросить пилот";
-    });
-}
-</script>
+    </script>
 </body>
 </html>
