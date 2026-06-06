@@ -490,50 +490,46 @@
 
         // БОЕВАЯ ИНТЕГРАЦИЯ С ТЕЛЕГРАМ-БОТОМ + ВСПЛЫВАЮЩЕЕ ОКНО SUCCESS OVERLAY
         function sendPilotToTelegram(event) {
-            event.preventDefault();
-            
-            const botToken = "bot_token";
-            const chatId = "chat_ID";
+    event.preventDefault();
+    
+    const email = document.getElementById('formEmail').value;
+    const phone = document.getElementById('formPhone').value;
+    const role = document.getElementById('formRole').value;
+    const company = document.getElementById('formCompany').value;
+    const submitBtn = document.getElementById('submitBtn');
 
-            const email = document.getElementById('formEmail').value;
-            const phone = document.getElementById('formPhone').value;
-            const role = document.getElementById('formRole').value;
-            const company = document.getElementById('formCompany').value;
-            const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Отправка...";
 
-            const textMessage = `🔔 Заявка на пилот Braint.ai\n\n• Компания: ${company}\n• Должность: ${role}\n• Email: ${email}\n• Телефон: ${phone}`;
-
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Отправка...";
-
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: textMessage,
-                    parse_mode: "HTML"
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Разворачиваем всплывающее окно успеха прямо по центру экрана
-                    document.getElementById('successModal').classList.remove('hidden');
-                    document.getElementById('errorModal').classList.add('hidden');
-                } else {
-                    throw new Error("Telegram API HTTP Error");
-                }
-            })
-            .catch(error => {
-                console.error("Braint Bot Core Error:", error);
-                document.getElementById('errorModal').classList.remove('hidden');
-                document.getElementById('successModal').classList.add('hidden');
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Запросить пилот";
-            });
+    // Отправляем запрос на нашу защищенную Serverless-функцию Vercel
+    fetch('/api/send-lead', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: email,
+            phone: phone,
+            role: role,
+            company: company
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('errorModal').classList.add('hidden');
+        } else {
+            throw new Error("Serverless API Error");
         }
+    })
+    .catch(error => {
+        console.error("Braint Core Network Error:", error);
+        document.getElementById('errorModal').classList.remove('hidden');
+        document.getElementById('successModal').classList.add('hidden');
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Запросить пилот";
+    });
+}
     </script>
 </body>
 </html>
