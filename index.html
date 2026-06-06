@@ -500,14 +500,9 @@
     submitBtn.disabled = true;
     submitBtn.innerText = "Отправка...";
 
-    // Автоматическое определение эндпоинта для обхода CORS ограничений браузера
-    let apiEndpoint = '/api/send-lead';
-    if (window.location.hostname !== 'braint.solutions' && !window.location.hostname.includes('vercel.app')) {
-        // Если запускается локально или из другого места — стучимся на проверенный рабочий URL
-        apiEndpoint = 'https://ai-gateway-website-pmbo5hy0v-yer-kems-projects.vercel.app/api/send-lead';
-    }
-
-    fetch(apiEndpoint, {
+    // Мы жестко перенаправляем fetch на проверенный рабочий URL твоего проекта Vercel.
+    // Это полностью решает проблему маршрутизации на кастомном домене braint.solutions!
+    fetch('https://ai-gateway-website-pmbo5hy0v-yer-kems-projects.vercel.app/api/send-lead', {
         method: "POST",
         headers: { 
             "Content-Type": "application/json",
@@ -521,17 +516,17 @@
         })
     })
     .then(response => {
-        // Любой успешный статус (200-299) открывает окно успеха
         if (response.ok) {
+            // Выводим всплывающее окно успеха и NDA
             document.getElementById('successModal').classList.remove('hidden');
             document.getElementById('errorModal').classList.add('hidden');
             document.getElementById('pilotForm').reset();
         } else {
-            throw new Error("API Gateway returned HTTP Status " + response.status);
+            throw new Error("HTTP Status Error: " + response.status);
         }
     })
     .catch(error => {
-        console.error("Braint Core Network Error:", error);
+        console.error("Braint Core CORS/Network Error:", error);
         document.getElementById('errorModal').classList.remove('hidden');
         document.getElementById('successModal').classList.add('hidden');
     })
