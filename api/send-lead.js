@@ -1,11 +1,9 @@
 export default async function handler(req, res) {
-    // Включаем CORS заголовки для предотвращения блокировок браузера
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-    // Обработка предварительного запроса браузера (Preflight OPTIONS request)
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
@@ -20,11 +18,9 @@ export default async function handler(req, res) {
         const botToken = process.env.TELEGRAM_BOT_TOKEN;
         const chatId = process.env.TELEGRAM_CHAT_ID;
 
-        // Железная подстраховка: если Vercel еще не применил переменные, 
-        // мы не падаем с ошибкой 500, а возвращаем статус успеха, чтобы UI не ломался
+        // Если ключи не прописаны в Vercel, мягко сообщаем фронтенду
         if (!botToken || !chatId || botToken.includes("ТВОЙ_API_ТОКЕН")) {
-            console.warn("Braint Warning: Переменные окружения на Vercel не найдены или не настроены!");
-            return res.status(200).json({ success: true, message: "Тестовый режим: ключи не настроены в Vercel" });
+            return res.status(200).json({ success: true, mode: "test_placeholder" });
         }
 
         const textMessage = `🔔 Заявка на пилот Braint.ai\n\n` +
@@ -33,12 +29,9 @@ export default async function handler(req, res) {
                             `• Email: ${email}\n` +
                             `• Телефон: ${phone}`;
 
-        // Выполняем запрос к Telegram через защищенную строку
         const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 chat_id: chatId,
                 text: textMessage,
@@ -46,18 +39,20 @@ export default async function handler(req, res) {
             })
         });
 
+        // Если Telegram API принял токен и ответил 200 OK
         if (response.ok) {
             return res.status(200).json({ success: true });
         } else {
-            const errText = await response.text();
-            console.error("Telegram API Error Response:", errText);
-            return res.status(200).json({ success: true, warning: "Telegram отклонил сообщение, но лид сохранен в логах сервера" });
+            // Если токен невалиден (как сейчас — 401), мы ловим этот статус
+            const errorText = await response.text();
+            console.error("Telegram API Rejected Request:", errorText);
+            
+            // Отдаем фронтенду ошибку, чтобы он вывел модалку "Ошибка подключения"
+            return res.status(401).json({ error: "Unauthorized Bot Token" });
         }
 
     } catch (error) {
-        console.error("Vercel Serverless Function Crash:", error);
-        // Режим Fail-Safe: если бэкенд упал, мы все равно отдаем фронтенду 200, 
-        // чтобы клиент ForteBank или Халык Банка увидел окно УСПЕХА и NDA, а не ошибку разработчика!
-        return res.status(200).json({ success: true, error_log: error.message });
+        console.error("Vercel Function Error:", error);
+        return res.status(500).json({ error: error.message });
     }
 }
