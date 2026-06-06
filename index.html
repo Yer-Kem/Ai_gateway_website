@@ -482,54 +482,53 @@
             document.getElementById(`tabBtn-${tId}`).className = "tab-btn px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider rounded-md border bg-black text-white border-black thumb-element transition";
         }
 
-        // ОЧИСТКА ФОРМЫ И ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА
         function closeSuccessModal() {
             document.getElementById('successModal').classList.add('hidden');
             document.getElementById('pilotForm').reset();
         }
 
-        // БОЕВАЯ ИНТЕГРАЦИЯ С ТЕЛЕГРАМ-БОТОМ + ВСПЛЫВАЮЩЕЕ ОКНО SUCCESS OVERLAY
+        // БЕЗОПАСНАЯ ОТПРАВКА ЧЕРЕЗ БЭКЕНД-ПРОКСИ VERCEL SERVERLESS
         function sendPilotToTelegram(event) {
-    event.preventDefault();
-    
-    const email = document.getElementById('formEmail').value;
-    const phone = document.getElementById('formPhone').value;
-    const role = document.getElementById('formRole').value;
-    const company = document.getElementById('formCompany').value;
-    const submitBtn = document.getElementById('submitBtn');
+            event.preventDefault();
 
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Отправка...";
+            const email = document.getElementById('formEmail').value;
+            const phone = document.getElementById('formPhone').value;
+            const role = document.getElementById('formRole').value;
+            const company = document.getElementById('formCompany').value;
+            const submitBtn = document.getElementById('submitBtn');
 
-    // Отправляем запрос на нашу защищенную Serverless-функцию Vercel
-    fetch('/api/send-lead', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            email: email,
-            phone: phone,
-            role: role,
-            company: company
-        })
-    })
-    .then(response => {
-        if (response.ok) {
-            document.getElementById('successModal').classList.remove('hidden');
-            document.getElementById('errorModal').classList.add('hidden');
-        } else {
-            throw new Error("Serverless API Error");
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Отправка...";
+
+            // Стучимся на локальный относительный путь Vercel API
+            fetch('/api/send-lead', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: email,
+                    phone: phone,
+                    role: role,
+                    company: company
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('successModal').classList.remove('hidden');
+                    document.getElementById('errorModal').classList.add('hidden');
+                } else {
+                    throw new Error("Vercel Serverless API returned error status");
+                }
+            })
+            .catch(error => {
+                console.error("Braint Core Network Error:", error);
+                document.getElementById('errorModal').classList.remove('hidden');
+                document.getElementById('successModal').classList.add('hidden');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Запросить пилот";
+            });
         }
-    })
-    .catch(error => {
-        console.error("Braint Core Network Error:", error);
-        document.getElementById('errorModal').classList.remove('hidden');
-        document.getElementById('successModal').classList.add('hidden');
-    })
-    .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Запросить пилот";
-    });
-}
     </script>
 </body>
 </html>
