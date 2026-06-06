@@ -500,12 +500,18 @@
     submitBtn.disabled = true;
     submitBtn.innerText = "Отправка...";
 
-    // Мы меняем относительный путь на абсолютный боевой адрес твоего бэкенда Vercel.
-    // Это полностью обойдет любые проблемы с кэшем домена braint.solutions!
-    fetch('https://ai-gateway-website-pmbo5hy0v-yer-kems-projects.vercel.app/api/send-lead', {
+    // Автоматическое определение эндпоинта для обхода CORS ограничений браузера
+    let apiEndpoint = '/api/send-lead';
+    if (window.location.hostname !== 'braint.solutions' && !window.location.hostname.includes('vercel.app')) {
+        // Если запускается локально или из другого места — стучимся на проверенный рабочий URL
+        apiEndpoint = 'https://ai-gateway-website-pmbo5hy0v-yer-kems-projects.vercel.app/api/send-lead';
+    }
+
+    fetch(apiEndpoint, {
         method: "POST",
         headers: { 
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Accept": "application/json"
         },
         body: JSON.stringify({
             email: email,
@@ -515,13 +521,13 @@
         })
     })
     .then(response => {
-        // Логи доказали, что этот эндпоинт всегда возвращает response.ok === true
+        // Любой успешный статус (200-299) открывает окно успеха
         if (response.ok) {
             document.getElementById('successModal').classList.remove('hidden');
             document.getElementById('errorModal').classList.add('hidden');
             document.getElementById('pilotForm').reset();
         } else {
-            throw new Error("API Gateway Response Error");
+            throw new Error("API Gateway returned HTTP Status " + response.status);
         }
     })
     .catch(error => {
@@ -533,7 +539,7 @@
         submitBtn.disabled = false;
         submitBtn.innerText = "Запросить пилот";
     });
-}    
+}
 </script>
 </body>
 </html>
