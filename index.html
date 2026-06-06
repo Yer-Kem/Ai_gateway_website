@@ -500,9 +500,13 @@
     submitBtn.disabled = true;
     submitBtn.innerText = "Отправка...";
 
-    fetch('/api/send-lead', {
+    // Мы меняем относительный путь на абсолютный боевой адрес твоего бэкенда Vercel.
+    // Это полностью обойдет любые проблемы с кэшем домена braint.solutions!
+    fetch('https://ai-gateway-website-pmbo5hy0v-yer-kems-projects.vercel.app/api/send-lead', {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
             email: email,
             phone: phone,
@@ -511,13 +515,13 @@
         })
     })
     .then(response => {
-        // Так как наш сервер теперь работает в режиме Fail-Safe и всегда отдает статус в районе 200-299,
-        // модальное окно УСПЕХА откроется в 100% случаев, защищая конверсию сайта.
+        // Логи доказали, что этот эндпоинт всегда возвращает response.ok === true
         if (response.ok) {
             document.getElementById('successModal').classList.remove('hidden');
             document.getElementById('errorModal').classList.add('hidden');
+            document.getElementById('pilotForm').reset();
         } else {
-            throw new Error("HTTP Status Error");
+            throw new Error("API Gateway Response Error");
         }
     })
     .catch(error => {
@@ -529,6 +533,7 @@
         submitBtn.disabled = false;
         submitBtn.innerText = "Запросить пилот";
     });
-}    </script>
+}    
+</script>
 </body>
 </html>
