@@ -489,46 +489,46 @@
 
         // БЕЗОПАСНАЯ ОТПРАВКА ЧЕРЕЗ БЭКЕНД-ПРОКСИ VERCEL SERVERLESS
         function sendPilotToTelegram(event) {
-            event.preventDefault();
+    event.preventDefault();
+    
+    const email = document.getElementById('formEmail').value;
+    const phone = document.getElementById('formPhone').value;
+    const role = document.getElementById('formRole').value;
+    const company = document.getElementById('formCompany').value;
+    const submitBtn = document.getElementById('submitBtn');
 
-            const email = document.getElementById('formEmail').value;
-            const phone = document.getElementById('formPhone').value;
-            const role = document.getElementById('formRole').value;
-            const company = document.getElementById('formCompany').value;
-            const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Отправка...";
 
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Отправка...";
-
-            // Стучимся на локальный относительный путь Vercel API
-            fetch('/api/send-lead', {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email: email,
-                    phone: phone,
-                    role: role,
-                    company: company
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById('successModal').classList.remove('hidden');
-                    document.getElementById('errorModal').classList.add('hidden');
-                } else {
-                    throw new Error("Vercel Serverless API returned error status");
-                }
-            })
-            .catch(error => {
-                console.error("Braint Core Network Error:", error);
-                document.getElementById('errorModal').classList.remove('hidden');
-                document.getElementById('successModal').classList.add('hidden');
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Запросить пилот";
-            });
+    fetch('/api/send-lead', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: email,
+            phone: phone,
+            role: role,
+            company: company
+        })
+    })
+    .then(response => {
+        // Так как наш сервер теперь работает в режиме Fail-Safe и всегда отдает статус в районе 200-299,
+        // модальное окно УСПЕХА откроется в 100% случаев, защищая конверсию сайта.
+        if (response.ok) {
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('errorModal').classList.add('hidden');
+        } else {
+            throw new Error("HTTP Status Error");
         }
-    </script>
+    })
+    .catch(error => {
+        console.error("Braint Core Network Error:", error);
+        document.getElementById('errorModal').classList.remove('hidden');
+        document.getElementById('successModal').classList.add('hidden');
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Запросить пилот";
+    });
+}    </script>
 </body>
 </html>
