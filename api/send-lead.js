@@ -1,9 +1,11 @@
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
+    // Включаем CORS заголовки для предотвращения блокировок браузера
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
+    // Обработка предварительного запроса браузера (Preflight OPTIONS request)
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
@@ -29,6 +31,7 @@ export default async function handler(req, res) {
                             `• Email: ${email}\n` +
                             `• Телефон: ${phone}`;
 
+        // Выполняем нативный запрос к Telegram API
         const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -39,20 +42,16 @@ export default async function handler(req, res) {
             })
         });
 
-        // Если Telegram API принял токен и ответил 200 OK
         if (response.ok) {
             return res.status(200).json({ success: true });
         } else {
-            // Если токен невалиден (как сейчас — 401), мы ловим этот статус
             const errorText = await response.text();
-            console.error("Telegram API Rejected Request:", errorText);
-            
-            // Отдаем фронтенду ошибку, чтобы он вывел модалку "Ошибка подключения"
+            console.error("Telegram API Error Log:", errorText);
             return res.status(401).json({ error: "Unauthorized Bot Token" });
         }
 
     } catch (error) {
-        console.error("Vercel Function Error:", error);
+        console.error("Vercel Core Function Crash:", error);
         return res.status(500).json({ error: error.message });
     }
-}
+};
